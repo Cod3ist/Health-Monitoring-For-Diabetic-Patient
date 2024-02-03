@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -103,6 +104,18 @@ class _LoginScreenState extends State<LoginScreen> {
             
                       }
                     },
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: InkWell(
+                      child: Container(
+                        height: 30,
+                        child: Text('Goback'),
+                      ),
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
+                      },
+                    ), 
                   )
                 ],
               ),

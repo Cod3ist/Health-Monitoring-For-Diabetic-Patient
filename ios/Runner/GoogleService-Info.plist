@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBXkzA9xaHlHPetKixvMrRf-Sj_0WicVtA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>200820310891</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.healthcareMonitoringDiabeticPatients</string>
+	<key>PROJECT_ID</key>
+	<string>dummy-4eeab</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dummy-4eeab.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:200820310891:ios:8a050d15e827f2c54cc22e</string>
+</dict>
+</plist>

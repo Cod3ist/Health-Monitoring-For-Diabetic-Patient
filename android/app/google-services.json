@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "200820310891",
+    "project_id": "dummy-4eeab",
+    "storage_bucket": "dummy-4eeab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200820310891:android:27f27da46e1958274cc22e",
+        "android_client_info": {
+          "package_name": "com.example.healthcare_monitoring_diabetic_patients"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1b2iZkPipHq4ZrmvIfQoocoQHr9rCDQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

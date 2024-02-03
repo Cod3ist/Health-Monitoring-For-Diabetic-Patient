@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
-import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+import '../../widgets/roundButton.dart';
+
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -30,27 +31,27 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: SingleChildScrollView(
             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 100,),
-                  Container(
-                    height: 270,
-                    child: Image(
-                        image: AssetImage('Images/Login.jpg'),
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 100,),
+                Container(
+                  height: 270,
+                  child: Image(
+                    image: AssetImage('Images/Login.jpg'),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    child:
+                    Text(
+                        'Sign Up',
+                        style: TextStyle(fontSize: 40,)
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      child:
-                      Text(
-                          'Login',
-                          style: TextStyle(fontSize: 40,)
-                      ),
-                    ),
-                  ),
-                  Form(
+                ),
+                Form(
                     key: _formKey,
                     child: Column(
                       children: [
@@ -95,29 +96,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         const SizedBox(height: 20,),
                       ],
                     )
-                  ),
-                  RoundButton(
-                    title: 'Login',
-                    onTap: () {
-                      if(_formKey.currentState!.validate()){
-            
-                      }
+                ),
+                RoundButton(
+                  title: 'SignUp',
+                  onTap: () {
+                    if(_formKey.currentState!.validate()){
+
+                    }
+                  },
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    child: Container(
+                      height: 30,
+                      child: Text('Goback'),
+                    ),
+                    onTap: (){
+                      Navigator.of(context).pop();
                     },
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: InkWell(
-                      child: Container(
-                        height: 30,
-                        child: Text('Goback'),
-                      ),
-                      onTap: (){
-                        Navigator.of(context).pop();
-                      },
-                    ), 
-                  )
-                ],
-              ),
+                )
+              ],
+            ),
           ),
         ),
       ),

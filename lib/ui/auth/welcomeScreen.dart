@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/loginScreen.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/auth/signUpScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -34,7 +35,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             }),
             SizedBox(height: 20,),
-            RoundButton(title: 'SIGN UP', onTap: () => {})
+            RoundButton(title: 'SIGN UP', onTap: () => {
+              Navigator.push(context, MaterialPageRoute(builder:
+                  (context) => SignUpScreen())
+              ),
+            })
           ],
         ),
       ),

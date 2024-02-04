@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/utils.dart';
 
 import '../../widgets/roundButton.dart';
 
@@ -11,9 +13,12 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
+  bool loading = false;
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -21,6 +26,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  void signUp() {
+    setState(() {
+      loading = true;
+    });
+    _auth.createUserWithEmailAndPassword(
+        email: emailController.text.toString(),
+        password: passwordController.text.toString()
+    ).then((value){
+      print('User Created');
+      setState(() {
+        loading = false;
+      });
+    }).onError((error, stackTrace){
+      Utils().toastMessage(context, error.toString());
+      setState(() {
+        loading = false;
+      });
+    });
   }
 
   @override
@@ -34,11 +59,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 100,),
+                Container(
+                  height: 100,
+                  child: IconButton(
+                    icon: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(Icons.arrow_back_ios)
+                    ),
+                    color: Color.fromARGB(139, 168, 121, 255),
+                    iconSize:30,
+                    onPressed: () {Navigator.of(context).pop();},
+                  ),
+                ),
                 Container(
                   height: 270,
                   child: Image(
-                    image: AssetImage('Images/Login.jpg'),
+                    image: AssetImage('Images/Signup.png'),
                   ),
                 ),
                 Align(
@@ -99,23 +135,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 RoundButton(
                   title: 'SignUp',
+                  loading: loading,
                   onTap: () {
                     if(_formKey.currentState!.validate()){
-
+                      signUp();
                     }
                   },
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: InkWell(
-                    child: Container(
-                      height: 30,
-                      child: Text('Goback'),
-                    ),
-                    onTap: (){
-                      Navigator.of(context).pop();
-                    },
-                  ),
                 )
               ],
             ),

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
@@ -13,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool loading = false;
+  final _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -20,6 +24,26 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     emailController.dispose();
     passwordController.dispose();
+  }
+
+  void login(){
+    setState(() {
+      loading = true;
+    });
+    _auth.signInWithEmailAndPassword(
+        email: emailController.text.toString(),
+        password: passwordController.text.toString()
+    ).then((value){
+      setState(() {
+        loading = false;
+      });
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }).onError((error, stackTrace){
+      debugPrint(error.toString());
+      setState(() {
+        loading = false;
+      });
+    });
   }
 
   @override
@@ -33,7 +57,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: 100,),
+                  Container(
+                    height: 100,
+                    child: IconButton(
+                      icon: Align(
+                        alignment: Alignment.centerLeft,
+                          child: Icon(Icons.arrow_back_ios)
+                      ),
+                      color: Color.fromARGB(139, 168, 121, 255),
+                      iconSize:30,
+                      onPressed: () {Navigator.of(context).pop();},
+                    ),
+                  ),
                   Container(
                     height: 270,
                     child: Image(
@@ -100,21 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     title: 'Login',
                     onTap: () {
                       if(_formKey.currentState!.validate()){
-            
+                        login();
                       }
                     },
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: InkWell(
-                      child: Container(
-                        height: 30,
-                        child: Text('Goback'),
-                      ),
-                      onTap: (){
-                        Navigator.of(context).pop();
-                      },
-                    ), 
                   )
                 ],
               ),

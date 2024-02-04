@@ -17,6 +17,14 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('HomePage'),
+        actions: [
+          IconButton(
+              onPressed: (){
+                _auth.signOut().then((value){Navigator.push(context, MaterialPageRoute(builder: (context) => WelcomeScreen()));});
+              },
+              icon: Icon(Icons.logout_rounded)
+          )
+        ],
       ),
     );
   }

@@ -38,10 +38,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         password: passwordController.text.toString()
     ).then((value){
       debugPrint('User Created');
-      Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails()));
       setState(() {
         loading = false;
       });
+      Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterationForm(user: value.user!.uid.toString())));
     }).onError((error, stackTrace){
       Utils().toastMessage(context, error.toString());
       setState(() {

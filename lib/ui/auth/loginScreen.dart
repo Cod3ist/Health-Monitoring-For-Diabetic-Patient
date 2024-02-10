@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,11 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
     _auth.signInWithEmailAndPassword(
         email: emailController.text.toString(),
         password: passwordController.text.toString()
-    ).then((value){
+    ).then((value) async {
       setState(() {
         loading = false;
       });
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen( user: value.user!.uid.toString(),)));
     }).onError((error, stackTrace){
       debugPrint(error.toString());
       setState(() {

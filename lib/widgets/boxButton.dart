@@ -10,15 +10,15 @@ class BoxButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(107, 72, 14, 200),
-                    Color.fromARGB(112, 199, 105, 182)
-                  ]
-              ),
-              borderRadius: BorderRadius.circular(12)
-          ),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(107, 72, 14, 200),
+                  Color.fromARGB(112, 199, 105, 182)
+                ]
+            ),
+            borderRadius: BorderRadius.circular(12)
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

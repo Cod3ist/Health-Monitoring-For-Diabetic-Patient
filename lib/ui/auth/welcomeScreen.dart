@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/loginScreen.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/auth/signUpScreen.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/auth/SignUp/signUpScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
 class WelcomeScreen extends StatefulWidget {

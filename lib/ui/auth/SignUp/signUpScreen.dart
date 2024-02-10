@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/auth/SignUp/userDetails.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/utils.dart';
 
-import '../../widgets/roundButton.dart';
+import '../../../widgets/roundButton.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -36,7 +37,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         email: emailController.text.toString(),
         password: passwordController.text.toString()
     ).then((value){
-      print('User Created');
+      debugPrint('User Created');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetails()));
       setState(() {
         loading = false;
       });

@@ -1,0 +1,154 @@
+[
+    {
+      "item" : "Apples",
+      "Glycemic Index" : 36.0,
+      "Carbs" : 2.4,
+      "Protein" : 0.3,
+      "Fiber" : 2.4,
+      "Description" : "Apples can be a suitable fruit choice due to their low glycemic index (GI) and high fiber content. The fiber in apples slows down the absorption of sugar into the bloodstream, helping to prevent spikes in blood sugar levels. Additionally, apples are rich in vitamins, minerals, and antioxidants, which can contribute to overall health and well-being."
+    },
+    {
+      "item" : "Apples Juice",
+      "Glycemic Index" : 41.0,
+      "Carbs": 11.0,
+      "Protein": 0.1,
+      "Fiber": 0.2,
+      "Description" : "While apple juice can be a tasty and refreshing beverage, it's essential to consume it in moderation due to its high sugar content. Even though it contains natural sugars, apple juice can still cause spikes in blood glucose levels. Opting for whole apples instead of juice is often recommended as they contain fiber, which slows down the absorption of sugar into the bloodstream. If you do choose to drink apple juice, consider diluting it with water or opting for unsweetened varieties to help minimize its impact on blood sugar levels."
+    },
+    {
+      "item" : "Banana",
+      "Glycemic Index" : 51.0,
+      "Carbs": 22.0,
+      "Protein": 0.8,
+      "Fiber": 1.9,
+      "Description" : "Bananas can be a part of your diet, but portion control is key due to their natural sugars. Bananas are a good source of fiber, potassium, and essential vitamins, but they also contain carbohydrates, which can affect your blood sugar levels. Consider consuming smaller portions and pairing them with protein or healthy fats to help manage sugar spikes."
+    },
+    {
+      "item" : "Orange",
+      "Glycemic Index" : 43.0,
+      "Carbs": 13.0,
+      "Protein": 0.9,
+      "Fiber": 2.2,
+      "Description" : "Oranges can be a part of a your diet in moderation due to their low glycemic index and high fiber content, which helps regulate blood sugar levels. However, it's important to consume them in controlled portions and preferably in their whole fruit form rather than as juice, as the latter can cause rapid spikes in blood sugar."
+    },
+    {
+      "item" : "Orange Juice" ,
+      "Glycemic Index" : 50.0,
+      "Carbs": 10.0,
+      "Protein": 0.7,
+      "Fiber": 0.2,
+      "Description" : "Consuming orange juice requires careful consideration due to its high sugar content. While orange juice contains valuable nutrients like vitamin C, it can cause a rapid spike in blood sugar levels. Therefore, it's generally recommended that you opt for whole fruits or consume orange juice in moderation, preferably diluted with water or paired with foods that slow down sugar absorption, like protein or healthy fats."
+    },
+    {
+      "item" : "Kiwi" ,
+      "Glycemic Index" : 58.0,
+      "Carbs": 14.4,
+      "Protein": 1.1,
+      "Fiber": 5.4,
+      "Description" : "Kiwi is a great fruit choice due to its low glycemic index (GI) and high fiber content. With its low GI, kiwi releases glucose into the bloodstream gradually, preventing sudden spikes in blood sugar levels. Additionally, its fiber content helps regulate blood sugar levels by slowing down the absorption of sugar in the body. Kiwi also packs a punch of essential nutrients like vitamin C, which supports overall health."
+    },
+    {
+      "item": "Avocado",
+      "Glycemic Index" : 40.0,
+      "Carbs": 8.6,
+      "Protein": 2.0,
+      "Fiber": 6.8,
+      "Description" : "Avocado is an excellent choice due to its low carbohydrate content and high fiber content. It has a low glycemic index, which means it doesn't cause spikes in blood sugar levels. Additionally, avocados are rich in heart-healthy monounsaturated fats, which can help improve insulin sensitivity. Including avocados in the diet can contribute to better blood sugar control and improvement in overall health."
+    },
+    {
+      "item": "Brown Rice",
+      "Glycemic Index" : 68.0,
+      "Carbs": 76.0,
+      "Protein": 7.5,
+      "Fiber": 3.6,
+      "Description" : "Brown rice is often recommended due to its lower glycemic index compared to white rice. This means it causes a slower increase in blood sugar levels after consumption, helping to prevent spikes in glucose levels. Additionally, brown rice contains more fiber, vitamins, and minerals than its refined counterpart, contributing to better blood sugar control and overall health. Including brown rice in a balanced diet can be a beneficial choice to help maintain stable blood sugar levels."
+    },
+    {
+      "item": "Plain Rice",
+      "Glycemic Index" : 73.0,
+      "Carbs": 80.0,
+      "Protein": 6.6,
+      "Fiber": 1.4,
+      "Description" : "Plain rice can be a suitable option when consumed in moderation and paired with lean protein and non-starchy vegetables to help manage blood sugar levels. Choosing whole grain varieties like brown or wild rice over refined white rice can also provide additional fiber and nutrients while causing a slower rise in blood glucose levels. However, portion control is key, as excessive intake of rice, even whole grain, can lead to spikes in blood sugar."
+    },
+    {
+      "item": "Green Apple",
+      "Glycemic Index" : 39.0,
+      "Carbs": 14.0,
+      "Protein": 0.0,
+      "Fiber": 2.1,
+      "Description" : "Green apples can be a good option due to their relatively low glycemic index compared to other fruits. They contain soluble fiber, which can help regulate blood sugar levels by slowing down the absorption of sugar into the bloodstream. However, it's important to monitor your portions and overall carbohydrate intake, even from fruits like green apples, to maintain stable blood sugar levels"
+    },
+    {
+      "item": "Coffee beans",
+      "Glycemic Index" : 50.0,
+      "Carbs": 62.0,
+      "Protein": 8.0,
+      "Fiber": 6.0,
+      "Description" : "For diabetic patients, it's essential to be mindful of their coffee choices. Opting for black coffee or coffee with sugar substitutes can help manage blood sugar levels better than sugary coffee drinks. It's wise to avoid high-sugar, flavored syrups and whipped cream toppings, which can cause spikes in blood glucose. Additionally, moderation is key; excessive caffeine intake can sometimes lead to increased insulin resistance. Therefore, enjoying coffee in moderation and making smart choices about additives can make it a safe and enjoyable beverage for diabetic individuals."
+    },
+    {
+      "item": "Green Tea",
+      "Glycemic Index" : 0.0,
+      "Carbs": 2.0,
+      "Protein": 0.5,
+      "Fiber": 0.0,
+      "Description": "Green tea is often considered a beneficial beverage for diabetic patients due to its potential to help regulate blood sugar levels. It contains compounds like polyphenols and catechins that may improve insulin sensitivity and reduce insulin resistance. Additionally, green tea is low in calories and can be a healthy alternative to sugary drinks, which can help manage weight and reduce the risk of developing type 2 diabetes."
+    },
+    {
+      "item": "Black Tea",
+      "Glycemic Index" : 0.0,
+      "Carbs": 0.5,
+      "Protein": 0.0,
+      "Fiber": 0.0,
+      "Description": "Black tea can be a suitable choice for diabetic patients as it contains compounds like polyphenols, which have been associated with potential health benefits, including improved insulin sensitivity and reduced risk of type 2 diabetes. However, it's essential for diabetic individuals to consume black tea in moderation and without added sugar or sweeteners to avoid spiking blood sugar levels. "
+    },
+    {
+      "item": "Eggs",
+      "Glycemic Index" : 0.0,
+      "Carbs": 2.36,
+      "Protein": 10.7,
+      "Fiber": 0.0,
+      "Description" : "Eggs can be a suitable option for diabetic patients as they are a good source of protein and healthy fats, which can help stabilize blood sugar levels. Additionally, eggs are low in carbohydrates, which means they have minimal impact on blood glucose levels."
+    },
+    {
+      "item": "Bread",
+      "Glycemic Index" : 70.0,
+      "Carbs": 49.2,
+      "Protein": 9.4,
+      "Fiber": 2.3,
+      "Description" : "For diabetic patients, choosing the right bread is crucial to managing blood sugar levels. Opting for whole grain or whole wheat bread with a low glycemic index can help prevent spikes in blood sugar. Look for breads that are high in fiber and low in added sugars. Additionally, portion control is key - keeping serving sizes in check can aid in maintaining stable glucose levels throughout the day. "
+    },
+    {
+      "item": "Wholemeal Bread",
+      "Glycemic Index" : 65.0,
+      "Carbs": 43.1,
+      "Protein": 12.3,
+      "Fiber": 6.0,
+      "Description": "Brown bread can be a suitable choice for diabetic patients due to its higher fiber content compared to white bread. The fiber helps slow down the absorption of sugar into the bloodstream, which can help stabilize blood sugar levels. Additionally, brown bread typically has a lower glycemic index than white bread, meaning it has less of an impact on blood sugar levels. However, portion control is still important, as even brown bread contains carbohydrates that can affect blood sugar."
+    },
+    {
+      "item":"Cheddar Cheese",
+      "Glycemic Index" : 0.0,
+      "Carbs": 3.4,
+      "Protein": 23.0,
+      "Fiber": 0.0,
+      "Description" : "Cheddar cheese can be a suitable option for diabetic patients when consumed in moderation. It's low in carbohydrates and rich in protein and fat, which can help stabilize blood sugar levels and keep you feeling full longer. However, it's important to be mindful of portion sizes due to its high calorie content. Opting for low-fat or reduced-fat versions may be beneficial for those watching their calorie intake."
+    },
+    {
+      "item": "Swiss Cheese",
+      "Glycemic Index" : 0.0,
+      "Carbs": 1.4,
+      "Protein": 27.0,
+      "Fiber": 0.0,
+      "Description" : "Swiss cheese can be a suitable option for diabetic patients as it is relatively low in carbohydrates and contains a good amount of protein and fat, which can help stabilize blood sugar levels. However, it's important for individuals with diabetes to consume cheese in moderation due to its high fat content. Choosing low-fat or reduced-fat varieties and pairing it with high-fiber foods like vegetables or whole grain crackers can further help manage blood sugar levels."
+    },
+    {
+      "item":"Feta Cheese",
+      "Glycemic Index" : 0.0,
+      "Carbs": 3.9,
+      "Protein": 14.0,
+      "Fiber": 0.0,
+      "Description" : "Feta cheese can be a suitable option for diabetic patients when consumed in moderation. It's relatively low in carbohydrates and contains healthy fats and proteins, which can help stabilize blood sugar levels when incorporated into a balanced diet. However, individuals with diabetes should still be mindful of portion sizes, as feta cheese is also high in sodium. Pairing it with fiber-rich foods like vegetables or whole grains can further help manage blood sugar levels and provide a satisfying and nutritious meal option."
+    }
+]

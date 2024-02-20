@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:intl/intl.dart';
 
 final database= FirebaseDatabase(databaseURL: "https://dummy-4eeab-default-rtdb.asia-southeast1.firebasedatabase.app");
@@ -12,9 +11,9 @@ Future<dynamic> fetchData(user) async {
   dynamic snapshotValue = event.snapshot.value;
   if (snapshotValue!=null) {
     Map<String, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+    print(map);
     return map;
   } else {
-    print(user);
     return [];
   }
 }

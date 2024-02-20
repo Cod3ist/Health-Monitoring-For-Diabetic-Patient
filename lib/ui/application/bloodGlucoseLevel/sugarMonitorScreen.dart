@@ -1,6 +1,5 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/addLevel.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/bloodGlucoseLevel/addLevel.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartWidget.dart';
 
 class SugarMonitorScreen extends StatefulWidget {

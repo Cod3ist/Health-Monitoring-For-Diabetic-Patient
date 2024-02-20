@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     height: 270,
                     child: Image(
-                        image: AssetImage('Images/Login.jpg'),
+                        image: AssetImage('assets/Images/Login.jpg'),
                     ),
                   ),
                   Align(

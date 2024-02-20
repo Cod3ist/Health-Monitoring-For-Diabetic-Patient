@@ -22,7 +22,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             Container(
               height: 220,
               child: Image(
-                image: AssetImage('Images/Welcome.png'),
+                image: AssetImage('assets/Images/Welcome.png'),
               ),
             ),
             SizedBox(height: 30,),

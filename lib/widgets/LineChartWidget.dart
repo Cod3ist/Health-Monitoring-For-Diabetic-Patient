@@ -1,4 +1,4 @@
-import 'package:fl_chart/fl_chart.dart';
+
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartTiles.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -24,7 +24,6 @@ class LineChartWidget extends StatelessWidget {
             List<ChartData> list =[];
             int index = 0;
             for( var i in map.keys){
-              double y = map.values.toList()[index].toDouble();
               list.add(ChartData(map.keys.toList()[index], map.values.toList()[index].toDouble()));
               index++;
             }

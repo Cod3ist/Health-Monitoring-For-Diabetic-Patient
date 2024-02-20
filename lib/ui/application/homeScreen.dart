@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/sugarMonitorScreen.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/bloodGlucoseLevel/sugarMonitorScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 import '../../widgets/boxButton.dart';
+import 'nutrition/foodDetails.dart';
 
 class HomeScreen extends StatefulWidget {
   final String user;
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
-            BoxButton(title: 'Sug-o-Meter', onTap: (){
+            BoxButton(title: 'BGL', onTap: (){
               Navigator.push(
                   context, MaterialPageRoute(
                   builder: (context) => SugarMonitorScreen(user: widget.user,)
@@ -42,7 +43,12 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 10,),
             BoxButton(title: 'Exercise', onTap: (){},),
             SizedBox(height: 10,),
-            BoxButton(title: 'Nutrition', onTap: (){},),
+            BoxButton(title: 'Nutrition', onTap: (){
+              Navigator.push(
+                  context, MaterialPageRoute(
+                  builder: (context) => NutritionMainScreen()
+              ));
+            },),
             SizedBox(height: 10,),
             BoxButton(title: 'Chatbot', onTap: (){},),
           ],

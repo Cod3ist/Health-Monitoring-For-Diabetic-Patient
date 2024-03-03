@@ -20,27 +20,43 @@ class LineChartWidget extends StatelessWidget {
         future: ChartType=='today'? fetchData(user) : fetchMonthlyData(user),
         builder:(context, snapshot) {
           if(snapshot.connectionState == ConnectionState.done) {
-            Map<String, dynamic> map = snapshot.data;
-            List<ChartData> list =[];
-            int index = 0;
-            for( var i in map.keys){
-              list.add(ChartData(map.keys.toList()[index], map.values.toList()[index].toDouble()));
-              index++;
+            try{
+              Map<String, dynamic> map = snapshot.data;
+              List<ChartData> list = [];
+              int index = 0;
+              for (var i in map.keys) {
+                list.add(ChartData(map.keys.toList()[index],
+                    map.values.toList()[index].toDouble()));
+                index++;
+              }
+              return SfCartesianChart(
+                primaryXAxis: CategoryAxis(),
+                series: [
+                  LineSeries<ChartData, String>(
+                    xValueMapper: (ChartData data, _) => data.x,
+                    yValueMapper: (ChartData data, _) => data.y,
+                    dataSource: list,
+                  )
+                ],
+              );
+            } catch (e){
+              return Center(
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  child: Text(
+                    'No Graph to Display',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Colors.grey
+                    ),
+                  ),
+                ),
+              );
             }
-            return SfCartesianChart(
-              primaryXAxis: CategoryAxis(),
-              series: [
-                LineSeries<ChartData, String>(
-                  xValueMapper: (ChartData data, _) => data.x,
-                  yValueMapper: (ChartData data, _) => data.y,
-                  dataSource: list,
-                )
-              ],
-            );
           } else {
             return CircularProgressIndicator();
           }
-    }
+        }
     );
   }
 }

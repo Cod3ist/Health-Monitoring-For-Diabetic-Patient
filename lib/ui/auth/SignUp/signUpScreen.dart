@@ -43,6 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       });
       Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterationForm(user: value.user!.uid.toString())));
     }).onError((error, stackTrace){
+      print(error.toString());
       Utils().toastMessage(context, error.toString());
       setState(() {
         loading = false;

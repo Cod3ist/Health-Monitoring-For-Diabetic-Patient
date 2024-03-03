@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -36,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         loading = false;
       });
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen( user: value.user!.uid.toString(),)));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationMenu( user: value.user!.uid.toString(),)));
     }).onError((error, stackTrace){
       debugPrint(error.toString());
       setState(() {

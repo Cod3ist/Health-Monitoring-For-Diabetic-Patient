@@ -3,7 +3,8 @@ import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition
 import 'package:healthcare_monitoring_diabetic_patients/utils/foodDataModel.dart';
 
 class NutritionMainScreen extends StatefulWidget {
-  const NutritionMainScreen({Key? key}) : super(key: key);
+  final String user;
+  const NutritionMainScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   State<NutritionMainScreen> createState() => _NutritionMainScreenState();

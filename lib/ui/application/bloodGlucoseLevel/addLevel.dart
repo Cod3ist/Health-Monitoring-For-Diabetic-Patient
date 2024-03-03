@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
 import 'package:intl/intl.dart';
 
 class AddLevel extends StatefulWidget {
@@ -47,7 +48,11 @@ class _AddLevelState extends State<AddLevel> {
                   database.ref(widget.user).child('Sugar levels').child('Daily').child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).update({
                     DateFormat.Hm().format(DateTime.now()).toString() : int.tryParse(levelcontroller.text)
                   });
-                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context, MaterialPageRoute(
+                      builder: (context) => NavigationMenu(user: widget.user,)
+                  )
+                  );
 
                   // database.ref(widget.user)
                   //     .child('Sugar levels')

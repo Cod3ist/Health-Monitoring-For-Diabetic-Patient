@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 
+
+
 Object details = {};
 const List<String> list = <String>['Type 1', 'Type 2'];
 class RegisterationForm extends StatefulWidget {

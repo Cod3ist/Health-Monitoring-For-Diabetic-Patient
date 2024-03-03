@@ -10,7 +10,7 @@ Future<dynamic> fetchData(user) async {
       .child('Daily').child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).once();
   dynamic snapshotValue = event.snapshot.value;
   if (snapshotValue!=null) {
-    Map<String, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+    Map<String, dynamic> map = jsonDecode(jsonEncode(snapshotValue));
     print(map);
     return map;
   } else {

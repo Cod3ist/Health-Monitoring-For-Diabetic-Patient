@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/splashscreen.dart';
+import 'package:hive_flutter/adapters.dart';
 
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+  await Hive.openBox('SetMenu');
   runApp(const MyApp());
 }
 

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/bloodGlucoseLevel/sugarMonitorScreen.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/foodDetails.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../ui/application/homeScreen.dart';
+import '../ui/application/nutrition/nutritionScreen.dart';
 
 class NavigationMenu extends StatelessWidget {
   final String user;
@@ -39,6 +39,6 @@ class NavigationController extends GetxController {
 
   NavigationController({required this.user});
 
-  get screens => [HomeScreen(user: user), SugarMonitorScreen(user: user), NutritionMainScreen(user:user)];
+  get screens => [HomeScreen(user: user), SugarMonitorScreen(user: user), NutritionScreen()];
 
 }

@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 
 

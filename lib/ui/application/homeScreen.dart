@@ -53,14 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Hey, ${map["Name"].toString()}!',
                                 style: TextStyle(
-                                    fontSize: 40
+                                    fontSize: 32
                                 ),
                               ),
-                              SizedBox(width: 124,),
                               IconButton(
                                   alignment: Alignment.bottomRight,
                                   onPressed: (){

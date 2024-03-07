@@ -1,9 +1,12 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/bloodGlucoseLevel/addLevel.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartWidget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:intl/intl.dart';
+import '../../../navigator/navigator.dart';
 import '../../../widgets/LineChartTiles.dart';
+import '../../auth/welcomeScreen.dart';
 
 class SugarMonitorScreen extends StatefulWidget {
   final String user;
@@ -14,95 +17,188 @@ class SugarMonitorScreen extends StatefulWidget {
 }
 
 class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
+  final levelcontroller = TextEditingController();
+  final _auth = FirebaseAuth.instance;
 
-  final database= FirebaseDatabase(databaseURL: "https://dummy-4eeab-default-rtdb.asia-southeast1.firebasedatabase.app");
+  String graphState = 'today';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(
-              context, MaterialPageRoute(
-              builder: (context) => AddLevel(user: widget.user,)
-          )
-         );
-        },
-        child: const Icon(Icons.add),
-      ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(12, 30, 12, 8),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    height: 40,
-                    child: IconButton(
-                      icon: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Icon(Icons.arrow_back_ios)
+                  SizedBox(
+                    width: 200,
+                    child: Text(
+                      'Day to Day Tracking',
+                      style: TextStyle(
+                          fontSize: 32
                       ),
-                      color: Color.fromARGB(139, 168, 121, 255),
-                      iconSize:20,
-                      onPressed: () {Navigator.pop(context);},
                     ),
                   ),
-                  Text('Glucose Level', style: TextStyle(fontSize: 30),)
+                  IconButton(
+                      alignment: Alignment.bottomRight,
+                      onPressed: (){
+                        _auth.signOut().then((value){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => WelcomeScreen()
+                              ));
+                        });
+                      },
+                      icon: Icon(
+                        Iconsax.logout_1,
+                        size: 35,
+                        color: Colors.purple,
+                      )
+                  ),
                 ],
               ),
-              Text('Daily Graph', style: TextStyle(fontSize: 25),),
-              FutureBuilder(
-                  future:fetchData(widget.user),
-                  builder:(context, snapshot) {
-                    if(snapshot.connectionState == ConnectionState.done) {
-                      try{
-                        Map<String, dynamic> map = snapshot.data;
-                        final entries = map.entries.toList();
-                        entries.sort((a, b) => a.key.compareTo(b.key));
-                        final sortedMap = Map.fromEntries(entries);
-
-                        List<ChartData> list = [];
-                        int index = 0;
-                        for (var i in sortedMap.keys) {
-                          list.add(ChartData(sortedMap.keys.toList()[index],
-                              sortedMap.values.toList()[index].toDouble()));
-                          index++;
-                        }
-                        return SfCartesianChart(
-                          primaryXAxis: CategoryAxis(),
-                          series: [
-                            LineSeries<ChartData, String>(
-                              xValueMapper: (ChartData data, _) => data.x,
-                              yValueMapper: (ChartData data, _) => data.y,
-                              dataSource: list,
-                            )
-                          ],
-                        );
-                      } catch (e){
-                        return Center(
-                          child: Container(
-                            padding: EdgeInsets.all(12),
-                            child: Text(
-                              'No Graph to Display',
-                              style: TextStyle(
-                                  fontSize: 32,
-                                  color: Colors.grey
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                    } else {
-                      return CircularProgressIndicator();
-                    }
-                  }
+              SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Blood Glucose Levels',
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: (){}, 
+                      icon: Icon(
+                          Iconsax.alarm,
+                          size: 20
+                      )
+                  ),
+                ],
               ),
-              Text('30 days Graph', style: TextStyle(fontSize: 25),),
-              LineChartWidget(user: widget.user,ChartType: '30Days',),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  graphState == 'today'? Text(
+                    'Daily Graph',
+                    style:TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ) : TextButton(
+                    onPressed: (){
+                      setState(() {
+                        graphState = 'today';
+                      });
+                    },
+                    child: Text('Daily Graph'),
+                  ),
+                  Container( // The vertical divider
+                    color: Colors.purple,
+                    width: 1.0,
+                    height: 20 ,
+                  ),
+                  graphState == '30Days'? Text(
+                    'Monthly Graph',
+                    style:TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ) : TextButton(
+                    onPressed: (){
+                      setState(() {
+                        graphState = '30Days';
+                      });
+                    },
+                    child: Text('Monthly Graph'),
+                  ),
+                ],
+              ),
+              LineChartWidget(user: widget.user, ChartType: graphState,),
+              SizedBox(height: 20),
+              Text(
+                'Insulin Dosage',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                      onPressed: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Blood Glucose Level: '),
+                              content: TextField(
+                                controller: levelcontroller,
+                                autofocus: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Enter Value'
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: (){
+                                      database.ref(widget.user).child('Sugar levels').child('Daily').child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).update({
+                                        DateFormat.Hm().format(DateTime.now()).toString() : int.tryParse(levelcontroller.text)
+                                      });
+                                      Navigator.push(
+                                          context, MaterialPageRoute(
+                                          builder: (context) => NavigationMenu(user: widget.user,)
+                                      ));
+                                    },
+                                    child: Text('Submit')
+                                )
+                              ],
+                            )
+                        );
+                      },
+                      child: Text('Add Level')
+                  ),
+                  TextButton(
+                      onPressed: (){
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text('Blood Glucose Level: '),
+                              content: TextField(
+                                controller: levelcontroller,
+                                autofocus: true,
+                                decoration: InputDecoration(
+                                    hintText: 'Enter Value'
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: (){
+                                      database.ref(widget.user)
+                                          .child('Sugar levels').child('Daily')
+                                          .child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).update({
+                                        DateFormat.Hm().format(DateTime.now()).toString() : int.tryParse(levelcontroller.text)
+                                      });
+                                      Navigator.push(
+                                          context, MaterialPageRoute(
+                                          builder: (context) => NavigationMenu(user: widget.user,)
+                                      ));
+                                    },
+                                    child: Text('Submit')
+                                )
+                              ],
+                            )
+                        );
+                      },
+                      child: Text('Insulin Calculation')
+                  ),
+                ],
+              ),
             ],
           ),
         ),

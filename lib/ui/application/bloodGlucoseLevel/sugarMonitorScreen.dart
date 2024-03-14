@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartWidget.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import '../../../navigator/navigator.dart';
-import '../../../widgets/LineChartTiles.dart';
+import '../../../utils/chart_data.dart';
 import '../../auth/welcomeScreen.dart';
 
 class SugarMonitorScreen extends StatefulWidget {
@@ -58,7 +61,7 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                       icon: Icon(
                         Iconsax.logout_1,
                         size: 35,
-                        color: Colors.purple,
+                        color: ColorPalette.purple,
                       )
                   ),
                 ],
@@ -88,8 +91,9 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                   graphState == 'today'? Text(
                     'Daily Graph',
                     style:TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: ColorPalette.deeptextpurple
                     ),
                   ) : TextButton(
                     onPressed: (){
@@ -97,18 +101,25 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                         graphState = 'today';
                       });
                     },
-                    child: Text('Daily Graph'),
+                    child: Text(
+                      'Daily Graph',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: ColorPalette.textpurple
+                      ),
+                    ),
                   ),
                   Container( // The vertical divider
-                    color: Colors.purple,
+                    color: ColorPalette.textpurple,
                     width: 1.0,
                     height: 20 ,
                   ),
                   graphState == '30Days'? Text(
                     'Monthly Graph',
                     style:TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: ColorPalette.deeptextpurple
                     ),
                   ) : TextButton(
                     onPressed: (){
@@ -116,7 +127,13 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                         graphState = '30Days';
                       });
                     },
-                    child: Text('Monthly Graph'),
+                    child: Text(
+                      'Monthly Graph',
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: ColorPalette.textpurple
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -150,6 +167,21 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                                       database.ref(widget.user).child('Sugar levels').child('Daily').child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).update({
                                         DateFormat.Hm().format(DateTime.now()).toString() : int.tryParse(levelcontroller.text)
                                       });
+                                      database.ref(widget.user)
+                                          .child('Sugar levels')
+                                          .child('Daily')
+                                          .child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString())
+                                          .once().then((event) {
+                                        Map<String, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+                                        num mean = 0;
+                                        for (var value in map.values.toList()){
+                                          mean = mean + value;
+                                        }
+                                        mean = mean / map.values.toList().length;
+                                        database.ref(widget.user).child('Sugar levels').child('30Days').update({
+                                          DateFormat('yyyy-MM-dd').format(DateTime.now()).toString() : mean
+                                        });
+                                      });
                                       Navigator.push(
                                           context, MaterialPageRoute(
                                           builder: (context) => NavigationMenu(user: widget.user,)
@@ -161,7 +193,12 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                             )
                         );
                       },
-                      child: Text('Add Level')
+                      child: Text(
+                        'Add Level',
+                        style: TextStyle(
+                          color: ColorPalette.textpurple
+                        ),
+                      )
                   ),
                   TextButton(
                       onPressed: (){
@@ -180,9 +217,17 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                                 TextButton(
                                     onPressed: (){
                                       database.ref(widget.user)
-                                          .child('Sugar levels').child('Daily')
-                                          .child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()).update({
-                                        DateFormat.Hm().format(DateTime.now()).toString() : int.tryParse(levelcontroller.text)
+                                          .child('Sugar levels')
+                                          .child('Daily')
+                                          .child(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString())
+                                          .once().then((event) {
+                                            Map<String, dynamic> map = jsonDecode(jsonEncode(event.snapshot.value));
+                                            num mean = 0;
+                                            for (var value in map.values.toList()){
+                                              mean = mean + value;
+                                            }
+                                            mean = mean / map.values.toList().length;
+                                            print(mean);
                                       });
                                       Navigator.push(
                                           context, MaterialPageRoute(
@@ -195,7 +240,12 @@ class _SugarMonitorScreenState extends State<SugarMonitorScreen> {
                             )
                         );
                       },
-                      child: Text('Insulin Calculation')
+                      child: Text(
+                        'Insulin Calculation',
+                        style: TextStyle(
+                          color: ColorPalette.textpurple
+                        ),
+                      )
                   ),
                 ],
               ),

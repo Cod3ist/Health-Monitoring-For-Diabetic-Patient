@@ -33,7 +33,6 @@ class FoodDetailsModel{
 
 Future<List<FoodDetailsModel>> readJson() async {
   final response = await rootBundle.loadString('assets/data/food.json');
-  final data = json.decode(response) as List<dynamic>;
-  print(data);
+  final data = json.decode(response)["Snacks"] as List<dynamic>;
   return data.map((e) => FoodDetailsModel.fromJson(e)).toList();
 }

@@ -1,16 +1,19 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/foodDetails.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import '../../../utils/colors.dart';
+import '../../../widgets/boxButton.dart';
 import '../../auth/welcomeScreen.dart';
 
 class NutritionScreen extends StatefulWidget {
-  const NutritionScreen({super.key});
+  const NutritionScreen({super.key, });
   @override
   State<NutritionScreen> createState() => _NutritionScreenState();
 }
@@ -29,14 +32,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
   List lunch_data = [];
   List dinner_data = [];
 
-  Future<void> setBreakfast() async {
+  Future<void> setMeal() async {
     final String response = await rootBundle.loadString(
         'assets/data/food.json');
     final data = await json.decode(response) as Map<String, dynamic>;
+    final random = Random();
     setState(() {
       menu = data;
-      print(menu["Meal"].length);
-      final random = Random();
       breakfast = menu["Breakfast"][random.nextInt(menu["Breakfast"].length)] as Map<String,dynamic>;
       lunch_dinner =menu["Meal"][random.nextInt(menu["Meal"].length)] as Map<String, dynamic>;
       drink = menu["Drink"][random.nextInt(menu["Drink"].length)] as Map<String, dynamic>;
@@ -65,22 +67,17 @@ class _NutritionScreenState extends State<NutritionScreen> {
     });
   }
 
-
-  void _createMeal(key, value) {
-    _myBox.put(key, value);
-    print(_myBox.get(key));
-  }
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setBreakfast();
+    setMeal();
   }
 
   @override
   Widget build(BuildContext context) {
     if (_myBox.get('Date') != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
+      _myBox.clear();
       _myBox.put('Date', DateFormat('yyyy-MM-dd').format(DateTime.now()));
       print(_myBox.get('Date'));
     } else {
@@ -119,7 +116,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     icon: Icon(
                       Iconsax.logout_1,
                       size: 35,
-                      color: Colors.purple,
+                      color: ColorPalette.purple,
                     )
                 ),
               ],
@@ -149,20 +146,28 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     ? TextButton(
                     onPressed: () {
                       showBreakfastDialog('Breakfast');
-                      _myBox.put('Breakfast', breakfast_data);
                       setState(() {
                         breakfast_data.clear();
                         _setBreakfast = false;
                       });
                     },
-                    child: Text('Set Menu')
+                    child: Text(
+                      'Set Menu',
+                      style: TextStyle(
+                          color: ColorPalette.textpurple
+                      ),
+                    )
                 )
                     : TextButton(
                     onPressed: () {
-                      print(_myBox.keys);
                       showMealPlan('Breakfast');
                     },
-                    child: Text('View Menu')
+                    child: Text(
+                        'View Menu',
+                      style: TextStyle(
+                          color: ColorPalette.textpurple
+                      ),
+                    )
                 )
               ],
             ),
@@ -179,19 +184,28 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     ? TextButton(
                     onPressed: () {
                       showMealDialog('Lunch');
-                      _myBox.put('Lunch', lunch_data);
                       setState(() {
                         lunch_data.clear();
                         _setLunch = false;
                       });
                     },
-                    child: Text('Set Menu')
+                    child: Text(
+                      'Set Menu',
+                      style: TextStyle(
+                        color: ColorPalette.textpurple
+                      ),
+                    )
                 )
                     : TextButton(
                     onPressed: () {
                       showMealPlan('Lunch');
                     },
-                    child: Text('View Menu')
+                    child: Text(
+                        'View Menu',
+                      style: TextStyle(
+                          color: ColorPalette.textpurple
+                      ),
+                    )
                 )
               ],
             ),
@@ -208,28 +222,42 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     ? TextButton(
                         onPressed: () {
                           showMealDialog('Dinner');
-                          _myBox.put('Dinner', dinner_data);
                           setState(() {
                             dinner_data.clear();
                             _setDinner = false;
                           });
                         },
-                        child: Text('Set Menu')
+                        child: Text(
+                            'Set Menu',
+                          style: TextStyle(
+                              color: ColorPalette.textpurple
+                          ),
+                        )
                       )
                     : TextButton(
                         onPressed: () {
                           showMealPlan('Dinner');
                         },
-                        child: Text('View Menu')
+                        child: Text(
+                            'View Menu',
+                          style: TextStyle(
+                              color: ColorPalette.textpurple
+                          ),
+                        )
                       )
               ],
             ),
+            BoxButton(
+                title: 'Snacks',
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => NutritionMainScreen()));
+                }
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          // print(_myBox.values);
           _myBox.delete('Breakfast');
           _myBox.delete('Lunch');
           _myBox.delete('Dinner');
@@ -554,14 +582,17 @@ class _NutritionScreenState extends State<NutritionScreen> {
                       setState(() {
                         breakfast_data.add(drink);
                       });
+                      _myBox.put('Breakfast', breakfast_data);
                     } else if (meal == 'Lunch'){
                       setState(() {
                         lunch_data.add(drink);
                       });
+                      _myBox.put('Lunch', lunch_data);
                     } else {
                       setState(() {
                         dinner_data.add(drink);
                       });
+                      _myBox.put('Dinner', dinner_data);
                     }
 
                     Navigator.pop(context);
@@ -611,7 +642,6 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     fontSize: 16
                   ),
                 ),
-
               ],
             ),
           );

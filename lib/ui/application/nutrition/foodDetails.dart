@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/FoodFacts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/foodDataModel.dart';
 
 class NutritionMainScreen extends StatefulWidget {
-  final String user;
-  const NutritionMainScreen({Key? key, required this.user}) : super(key: key);
+  const NutritionMainScreen({Key? key}) : super(key: key);
 
   @override
   State<NutritionMainScreen> createState() => _NutritionMainScreenState();
@@ -19,11 +17,37 @@ class _NutritionMainScreenState extends State<NutritionMainScreen> {
 
   Future<List<FoodDetailsModel>> _fetchData() async {
     _allData = await readJson();
+    // print(_allData);
     _filteredData = _searchController.text.isEmpty ?
         _allData :  _allData.where((element) =>
             element.item!.toLowerCase().contains(value.toLowerCase())
         ).toList();
     return _filteredData;
+  }
+
+  void showContext(item){
+    showDialog(
+        context: context,
+        builder: (context) => FutureBuilder(
+          future: readJson(),
+          builder: (context, snapshot){
+            if(snapshot.hasError){
+              return CircularProgressIndicator();
+            } else if(snapshot.hasData){
+              var data = snapshot.data?.firstWhere((element) => element.item == item);
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                ],
+              );
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        )
+    );
   }
 
   @override
@@ -36,7 +60,7 @@ class _NutritionMainScreenState extends State<NutritionMainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nutrition Main Screen'),
+        title: Text('Snacks'),
       ),
       body: Column(
         children: [
@@ -68,14 +92,149 @@ class _NutritionMainScreenState extends State<NutritionMainScreen> {
                       return Card(
                         child: InkWell(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NutritionDetails(
-                                  item: _filteredData[index].item.toString(),
-                                ),
-                              ),
+                            showDialog(
+                                context: context,
+                                builder: (context){
+                                  return AlertDialog(
+                                    title: Text(_filteredData[index].item.toString()),
+                                    content: Container(
+                                      height: 600,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Container(
+                                            padding: EdgeInsets.all(8),
+                                            child: Text(
+                                              _filteredData[index].description.toString(),
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(height: 20,),
+                                          Text(
+                                            ' Nutrition Facts',
+                                            style: TextStyle(
+                                                fontSize: 17
+                                            ),
+                                          ),
+                                          Container(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Table(
+                                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                                              children: [
+                                                const TableRow(
+                                                    decoration: BoxDecoration(
+                                                        color: Color.fromARGB(255, 211, 188, 250)
+                                                    ),
+                                                    children: [
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Title 1'),
+                                                          )
+                                                      ),
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Title 2'),
+                                                          )
+                                                      )
+                                                    ]
+                                                ),
+                                                TableRow(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white
+                                                    ),
+                                                    children: [
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Glycemic Index'),
+                                                          )
+                                                      ),
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text(_filteredData[index].gi.toString()),
+                                                          )
+                                                      )
+                                                    ]
+                                                ),
+                                                TableRow(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white
+                                                    ),
+                                                    children: [
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Carbohydrates'),
+                                                          )
+                                                      ),
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text(_filteredData[index].carbs.toString()),
+                                                          )
+                                                      )
+                                                    ]
+                                                ),
+                                                TableRow(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white
+                                                    ),
+                                                    children: [
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Protien'),
+                                                          )
+                                                      ),
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text(_filteredData[index].protein.toString()),
+                                                          )
+                                                      )
+                                                    ]
+                                                ),
+                                                TableRow(
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white
+                                                    ),
+                                                    children: [
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text('Fiber'),
+                                                          )
+                                                      ),
+                                                      TableCell(
+                                                          child: Padding(
+                                                            padding: EdgeInsets.all(8.0),
+                                                            child: Text(_filteredData[index].fiber.toString()),
+                                                          )
+                                                      )
+                                                    ]
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
                             );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => NutritionDetails(
+                            //       item: _filteredData[index].item.toString(),
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: ListTile(
                             title: Text(_filteredData[index].item.toString()),

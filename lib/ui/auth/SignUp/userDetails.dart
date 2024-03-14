@@ -1,15 +1,13 @@
-
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/homeScreen.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/auth/SignUp/medicalDetails.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
-
-
 
 Object details = {};
 const List<String> list = <String>['Type 1', 'Type 2'];
+
 class RegisterationForm extends StatefulWidget {
   final String user;
   const RegisterationForm({super.key, required this.user});
@@ -161,7 +159,7 @@ class _UserDetailsState extends State<RegisterationForm> {
                       'Type' : dropDownValue,
                       'Target' : int.tryParse(targetcontroller.text)
                     });
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(user: widget.user)));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => MedicalDetails(user: widget.user)));
                     setState(() {
                       loading = false;
                     });

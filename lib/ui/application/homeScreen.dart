@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -74,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   icon: Icon(
                                     Iconsax.logout_1,
                                     size: 35,
-                                    color: Colors.purple,
+                                    color: ColorPalette.purple,
                                   )
                               ),
                             ],

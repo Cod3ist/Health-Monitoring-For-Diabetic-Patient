@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartTiles.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/chart_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartData {
@@ -19,7 +20,7 @@ class LineChartWidget extends StatelessWidget {
     return Container(
       height: 200,
       decoration: BoxDecoration(
-        color: Colors.purple.shade50,
+        color: ColorPalette.lightpurple,
         borderRadius: BorderRadius.circular(12)
       ),
       child: FutureBuilder(
@@ -37,7 +38,7 @@ class LineChartWidget extends StatelessWidget {
                 for (var i in sortedMap.keys) {
                   list.add(ChartData(sortedMap.keys.toList()[index],
                     sortedMap.values.toList()[index],
-                    Colors.purple
+                    ColorPalette.deeppurple
                   ));
                   index++;
                 }
@@ -52,8 +53,7 @@ class LineChartWidget extends StatelessWidget {
                             textAngle: 0,
                             start: targetBGL,
                             end: targetBGL,
-                            textStyle: TextStyle(color: Colors.deepOrange, fontSize: 16),
-                            borderColor: Colors.deepOrange.shade300,
+                            borderColor: Colors.red,
                             borderWidth: 2
                         )
                       ]
@@ -75,7 +75,7 @@ class LineChartWidget extends StatelessWidget {
                         'No Graph to Display',
                         style: TextStyle(
                           fontSize: 32,
-                          color: Colors.grey
+                          color: ColorPalette.textgrey
                         ),
                       ),
                     ),

@@ -381,23 +381,23 @@ class _AddReportState extends State<AddReport> {
                   const SizedBox(height: 25,),
                   RoundButton(title: 'Upload', onTap: () {
                     if (_formKey.currentState!.validate()){
-                      database.ref(widget.user).child('Medical History').child('Medical Reports').update({
-                        _formatDate(year, month, day) : {
-                          "Fasting Blood Sugar" : fastingBloodSugar.text,
-                          "HbA1c": HbA1c.text,
-                          "eAG": eAG.text,
-                          "Cholestrol": cholestrol.text,
-                          "Triglceri": Triglycerides.text,
-                          "HDL":HDLCholestrol.text,
-                          "LDL":LDLCholestrol.text,
-                          "T4": T4.text,
-                          "TSH": TSH.text
-                        }
-                      });
+                      var value = {_formatDate(year, month, day): {
+                        "Fasting Blood Sugar": fastingBloodSugar.text,
+                        "HbA1c": HbA1c.text,
+                        "eAG": eAG.text,
+                        "Cholestrol": cholestrol.text,
+                        "Triglceri": Triglycerides.text,
+                        "HDL": HDLCholestrol.text,
+                        "LDL": LDLCholestrol.text,
+                        "T4": T4.text,
+                        "TSH": TSH.text
+                      }};
+                      database.ref(widget.user).child('Medical History').child('Medical Reports').update(value.cast<String, Object?>());
                       Navigator.pop(context);
                     }
                     // Navigator.push(context, MaterialPageRoute(builder: (context) => MedicalReports(user: widget.user)));
-                  },)
+                  },
+                  )
                 ],
               ),
           ),

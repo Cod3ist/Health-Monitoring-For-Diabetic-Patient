@@ -105,9 +105,9 @@ class _MedicalReportsState extends State<MedicalReports> {
                                 const SizedBox(height: 25,),
                                 FastingSugarCard(blood_sugar: double.parse(map[dropDownValue]["Fasting Blood Sugar"])),
                                 const SizedBox(height: 25,),
-                                GlycosylatedHaemoglobinCard(hba1c:double.parse(map[dropDownValue]["HbA1c"]), eAG:double.parse(map[dropDownValue]["eAG"])),
+                                GlycosylatedHaemoglobinCard(hba1c: double.parse(map[dropDownValue]["HbA1c"]), eAG: double.parse(map[dropDownValue]["eAG"])),
                                 const SizedBox(height: 25,),
-                                LipidProfileCard(Cholestrol_total: double.parse(map[dropDownValue]["Cholestrol"]), HDL: double.parse(map[dropDownValue]["HDL"]), LDL: double.parse(map[dropDownValue]["LDL"]), triglycerides: double.parse(map[dropDownValue]["Triglycerides"].toString()),),
+                                LipidProfileCard(Cholestrol_total: double.parse(map[dropDownValue]["Cholestrol"]), HDL: double.parse(map[dropDownValue]["HDL"]), LDL: double.parse(map[dropDownValue]["LDL"]), triglycerides: double.parse(map[dropDownValue]["Triglceri"]),),
                                 const SizedBox(height: 25,),
                                 EndocronologyCard(T4: double.parse(map[dropDownValue]["T4"]), TSH: double.parse(map[dropDownValue]["TSH"]))
                               ],

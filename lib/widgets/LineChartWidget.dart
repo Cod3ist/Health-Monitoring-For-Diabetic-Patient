@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/chart_data.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/fetch_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartData {
@@ -68,6 +68,7 @@ class LineChartWidget extends StatelessWidget {
                   ],
                 );
               } catch (e){
+                print(e);
                 return Center(
                   child: Container(
                       padding: EdgeInsets.all(30),

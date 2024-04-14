@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../utils/message.dart';
 
@@ -28,8 +29,32 @@ class _ChatListViewState extends State<ChatListView> {
             );
           }
       ) : Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('data')
+          Image.asset(
+            'assets/Images/chatbot.gif',
+            height: 100,
+          ),
+          Text(
+              'Welcome!',
+              style: GoogleFonts.mukta(
+                textStyle: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.deepPurple.shade900
+                )
+              )
+          ),
+          Text(
+              'Ask me anything',
+              style: GoogleFonts.mukta(
+                textStyle: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.deepPurple.shade400
+                )
+              )
+          )
         ],
       ),
     );

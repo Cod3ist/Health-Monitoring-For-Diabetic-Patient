@@ -1,16 +1,17 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/exercise/exercises.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/foodDetails.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import '../../../utils/colors.dart';
 import '../../../widgets/boxButton.dart';
-import '../../auth/welcomeScreen.dart';
+import '../../../widgets/roundButton.dart';
 
 class NutritionScreen extends StatefulWidget {
   const NutritionScreen({super.key, });
@@ -72,10 +73,6 @@ class _NutritionScreenState extends State<NutritionScreen> {
     // TODO: implement initState
     super.initState();
     setMeal();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     if (_myBox.get('Date') != DateFormat('yyyy-MM-dd').format(DateTime.now())) {
       _myBox.clear();
       _myBox.put('Date', DateFormat('yyyy-MM-dd').format(DateTime.now()));
@@ -83,176 +80,221 @@ class _NutritionScreenState extends State<NutritionScreen> {
     } else {
       print(_myBox.keys);
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.deepPurple.shade500, Colors.deepPurple.shade50],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter
+            )
+        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 200,
-                  child: Text(
-                    'Meals',
-                    style: TextStyle(
-                        fontSize: 32
-                    ),
-                  ),
-                ),
-                IconButton(
-                    alignment: Alignment.bottomRight,
-                    onPressed: () {
-                      _auth.signOut().then((value) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => WelcomeScreen()
-                            ));
-                      });
-                    },
-                    icon: Icon(
-                      Iconsax.logout_1,
-                      size: 35,
-                      color: ColorPalette.purple,
+            TitleCard(),
+            SizedBox(height: 30,),
+            Container(
+              padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 20),
+              decoration: BoxDecoration(
+                  color: Colors.purple.shade50,
+                  borderRadius: BorderRadius.circular(30)
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Meal Plan',
+                    textAlign: TextAlign.start,
+                    style: GoogleFonts.tiltNeon(
+                      textStyle: TextStyle(
+                        fontSize: 30,
+                        color: Colors.deepPurple.shade900
+                      )
                     )
-                ),
-              ],
-            ),
-            Text(
-              'Meal Plan',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontSize: 23
+                  ),
+                  Divider(
+                    thickness: 1,
+                    indent: 10,
+                    endIndent: 20,
+                    color: Colors.deepPurple.shade100,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Breakfast',
+                          style: GoogleFonts.tiltNeon(
+                              textStyle: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.w200,
+                                  color: Colors.deepPurple.shade900
+                              )
+                          )
+                      ),
+                      _myBox.get('Breakfast') == null && _setBreakfast
+                          ? TextButton(
+                              onPressed: () {
+                                showBreakfastDialog('Breakfast');
+                                setState(() {
+                                  breakfast_data.clear();
+                                });
+                              },
+                              child: Text(
+                                'Set Menu',
+                                style: GoogleFonts.mukta(
+                                  textStyle: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.deepPurpleAccent.shade100
+                                  )
+                                )
+                              )
+                            )
+                          : TextButton(
+                              onPressed: () {
+                                showMealPlan('Breakfast');
+                              },
+                              child: Text(
+                                'View Menu',
+                                  style: GoogleFonts.mukta(
+                                      textStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.deepPurpleAccent.shade100
+                                      )
+                                  )
+                              )
+                            )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Lunch',
+                          style: GoogleFonts.tiltNeon(
+                            textStyle: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w200,
+                              color: Colors.deepPurple.shade900
+                            )
+                          )
+                      ),
+                      _myBox.get('Lunch') == null && _setLunch
+                          ? TextButton(
+                          onPressed: () {
+                            showMealDialog('Lunch');
+                            setState(() {
+                              lunch_data.clear();
+                              _setLunch = false;
+                            });
+                          },
+                          child: Text(
+                            'Set Menu',
+                              style: GoogleFonts.mukta(
+                                textStyle: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.deepPurpleAccent.shade100
+                                )
+                              )
+                          )
+                        )
+                          : TextButton(
+                          onPressed: () {
+                            showMealPlan('Lunch');
+                          },
+                          child: Text(
+                              'View Menu',
+                              style: GoogleFonts.mukta(
+                                textStyle: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.deepPurpleAccent.shade100
+                                )
+                              )
+                          )
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Dinner',
+                        style: GoogleFonts.tiltNeon(
+                          textStyle: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w200,
+                            color: Colors.deepPurple.shade900
+                          )
+                        )
+                      ),
+                      _myBox.get('Dinner') == null && _setDinner
+                          ? TextButton(
+                              onPressed: () {
+                                showMealDialog('Dinner');
+                                setState(() {
+                                  dinner_data.clear();
+                                  _setDinner = false;
+                                });
+                              },
+                              child: Text(
+                                'Set Menu',
+                                style: GoogleFonts.mukta(
+                                  textStyle: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.deepPurpleAccent.shade100
+                                  )
+                                )
+                              )
+                            )
+                          : TextButton(
+                              onPressed: () {
+                                showMealPlan('Dinner');
+                              },
+                              child: Text(
+                                'View Menu',
+                                style: GoogleFonts.mukta(
+                                  textStyle: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.deepPurpleAccent.shade100
+                                  )
+                                )
+                              )
+                            )
+                    ],
+                  ),
+                ],
               ),
             ),
-            Divider(
-              thickness: 1,
-              indent: 10,
-              endIndent: 20,
-            ),
+            SizedBox(height: 20,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Breakfast',
-                  style: TextStyle(
-                      fontSize: 20
-                  ),
+                BoxButton(
+                    title: 'Snacks',
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NutritionMainScreen()));
+                    }, image_path: 'assets/Images/snacks.svg',
                 ),
-                _myBox.get('Breakfast') == null && _setBreakfast
-                    ? TextButton(
-                    onPressed: () {
-                      showBreakfastDialog('Breakfast');
-                      setState(() {
-                        breakfast_data.clear();
-                        _setBreakfast = false;
-                      });
-                    },
-                    child: Text(
-                      'Set Menu',
-                      style: TextStyle(
-                          color: ColorPalette.textpurple
-                      ),
-                    )
-                )
-                    : TextButton(
-                    onPressed: () {
-                      showMealPlan('Breakfast');
-                    },
-                    child: Text(
-                        'View Menu',
-                      style: TextStyle(
-                          color: ColorPalette.textpurple
-                      ),
-                    )
-                )
+                // SizedBox(height: 10,),
+                BoxButton(
+                  title: 'Exercise',
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Exercises()));
+                  },
+                  image_path: 'assets/Images/exercise.svg',
+                ),
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Lunch',
-                  style: TextStyle(
-                      fontSize: 20
-                  ),
-                ),
-                _myBox.get('Lunch') == null && _setLunch
-                    ? TextButton(
-                    onPressed: () {
-                      showMealDialog('Lunch');
-                      setState(() {
-                        lunch_data.clear();
-                        _setLunch = false;
-                      });
-                    },
-                    child: Text(
-                      'Set Menu',
-                      style: TextStyle(
-                        color: ColorPalette.textpurple
-                      ),
-                    )
-                )
-                    : TextButton(
-                    onPressed: () {
-                      showMealPlan('Lunch');
-                    },
-                    child: Text(
-                        'View Menu',
-                      style: TextStyle(
-                          color: ColorPalette.textpurple
-                      ),
-                    )
-                )
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Dinner',
-                  style: TextStyle(
-                      fontSize: 20
-                  ),
-                ),
-                _myBox.get('Dinner') == null && _setDinner
-                    ? TextButton(
-                        onPressed: () {
-                          showMealDialog('Dinner');
-                          setState(() {
-                            dinner_data.clear();
-                            _setDinner = false;
-                          });
-                        },
-                        child: Text(
-                            'Set Menu',
-                          style: TextStyle(
-                              color: ColorPalette.textpurple
-                          ),
-                        )
-                      )
-                    : TextButton(
-                        onPressed: () {
-                          showMealPlan('Dinner');
-                        },
-                        child: Text(
-                            'View Menu',
-                          style: TextStyle(
-                              color: ColorPalette.textpurple
-                          ),
-                        )
-                      )
-              ],
-            ),
-            BoxButton(
-                title: 'Snacks',
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => NutritionMainScreen()));
-                }
-            )
           ],
         ),
       ),
@@ -273,113 +315,203 @@ class _NutritionScreenState extends State<NutritionScreen> {
           return AlertDialog(
             title: Text(
                 'Choose Your dish: ',
-              style: TextStyle(
-                fontSize: 24
+              style: GoogleFonts.tiltNeon(
+                textStyle: TextStyle(
+                  fontSize: 25,
+                  color: Colors.deepPurple.shade900
+                )
               ),
             ),
             content: Container(
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    breakfast["dish"],
-                    style: TextStyle(
-                      fontSize: 20,
+              height: 900,
+              child: SingleChildScrollView(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      breakfast["dish"],
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.deepPurple.shade600
+                          )
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text(
-                    'Recipe:',
-                    style: TextStyle(
-                      fontSize: 16
+                    SizedBox(height: 10,),
+                    Image.asset(breakfast["image_path"]),
+                    SizedBox(height: 10,),
+                    Text(
+                      'Recipe:',
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 18,
+                            color: Colors.deepPurple.shade800
+                          )
+                      ),
                     ),
-                  ),
-                  Text(
-                    breakfast["recipe"],
-                    style: TextStyle(
-                      fontSize: 14
+                    Text(
+                      breakfast["recipe"],
+                      style:  GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                          )
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20,),
-                  Container(
-                    child: Table(
-                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                      children: [
-                        const TableRow(
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 211, 188, 250)
-                            ),
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Content'),
-                                  )
+                    SizedBox(height: 20,),
+                    Container(
+                      child: Table(
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        children: [
+                          TableRow(
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 211, 188, 250)
                               ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Per Serving (in grams)'),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Carbs'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(breakfast["carbs"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Protien'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(breakfast["protien"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Fibre'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(breakfast["fiber"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Content',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Per Serving (in grams)',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Carbs',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          breakfast["carbs"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Protien',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          breakfast["protien"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Fibre',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          breakfast["fiber"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             actions: [
+              TextButton(
+                  onPressed: () {
+                    refreshBreakfast();
+                    setState(() {
+                      _setBreakfast = false;
+                    });
+                    Navigator.pop(context);
+                    showBreakfastDialog(meal);
+                  },
+                  child: Text(
+                    "Anythin' else?",
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
+              ),
               TextButton(
                   onPressed: () {
                     setState(() {
@@ -388,15 +520,14 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     Navigator.pop(context);
                     showDrinkDialog(meal);
                   },
-                  child: Text('Next')
-              ),
-              TextButton(
-                  onPressed: () {
-                    refreshBreakfast();
-                    Navigator.pop(context);
-                    showBreakfastDialog(meal);
-                  },
-                  child: Text('Refresh')
+                  child: Text(
+                    'Looks Good!',
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
               ),
             ],
           );
@@ -408,110 +539,203 @@ class _NutritionScreenState extends State<NutritionScreen> {
         context: context, // Allow dismissal by tapping outside
         builder: (context) {
           return AlertDialog(
-            title: Text('Choose Your dish'),
-            content: Container(
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    lunch_dinner["dish"],
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text(
-                    'Recipe:',
-                    style: TextStyle(
-                        fontSize: 16
-                    ),
-                  ),
-                  Text(
-                    lunch_dinner["recipe"],
-                    style: TextStyle(
-                        fontSize: 14
-                    ),
-                  ),
-                  SizedBox(height: 20,),
-                  Container(
-                    child: Table(
-                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                      children: [
-                        const TableRow(
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 211, 188, 250)
-                            ),
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Content'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Per Serving (in grams)'),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Carbs'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(lunch_dinner["carbs"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Protien'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(lunch_dinner["protien"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                        TableRow(
-                            children: [
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text('Fibre'),
-                                  )
-                              ),
-                              TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(lunch_dinner["fiber"].toString()),
-                                  )
-                              )
-                            ]
-                        ),
-                      ],
-                    ),
+            title: Text(
+                'Choose Your dish',
+              style: GoogleFonts.tiltNeon(
+                  textStyle: TextStyle(
+                      fontSize: 25,
+                      color: Colors.deepPurple.shade900
                   )
-                ],
+              ),
+            ),
+            content: Container(
+              height: 900,
+              child: SingleChildScrollView(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      lunch_dinner["dish"],
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.deepPurple.shade600
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+                    Image.asset(lunch_dinner["image_path"]),
+                    SizedBox(height: 10,),
+                    Text(
+                      'Recipe:',
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 18,
+                              color: Colors.deepPurple.shade800
+                          )
+                      ),
+                    ),
+                    Text(
+                      lunch_dinner["recipe"],
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.deepPurple.shade600
+                          )
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    Container(
+                      child: Table(
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        children: [
+                          TableRow(
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 211, 188, 250)
+                              ),
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Content',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Per Serving (in grams)',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Carbs',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          lunch_dinner["carbs"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Protien',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          lunch_dinner["protien"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                          TableRow(
+                              children: [
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Fibre',
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                ),
+                                TableCell(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Text(
+                                          lunch_dinner["fiber"].toString(),
+                                        style: GoogleFonts.mukta(
+                                            textStyle: TextStyle(
+                                              fontSize: 18,
+                                            )
+                                        ),
+                                      ),
+                                    )
+                                )
+                              ]
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             actions: [
+              TextButton(
+                  onPressed: () {
+                    refreshMeal();
+                    Navigator.pop(context);
+                    showMealDialog(meal);
+                  },
+                  child: Text(
+                    "Anythin' else?",
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
+              ),
               TextButton(
                   onPressed: () {
                     if (meal =='Lunch') {
@@ -526,15 +750,14 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     Navigator.pop(context);
                     showDrinkDialog(meal);
                   },
-                  child: Text('Next')
-              ),
-              TextButton(
-                  onPressed: () {
-                    refreshMeal();
-                    Navigator.pop(context);
-                    showMealDialog(meal);
-                  },
-                  child: Text('Refresh')
+                  child: Text(
+                    'Looks Good!',
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
               ),
             ],
           );
@@ -546,36 +769,72 @@ class _NutritionScreenState extends State<NutritionScreen> {
         context: context, // Allow dismissal by tapping outside
         builder: (context) {
           return AlertDialog(
-            title: Text('Choose Your Drink'),
+            title: Text(
+                'Choose Your Drink',
+              style: GoogleFonts.tiltNeon(
+                  textStyle: TextStyle(
+                      fontSize: 25,
+                      color: Colors.deepPurple.shade900
+                  )
+              ),
+            ),
             content: Container(
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    drink["drink"],
-                    style: TextStyle(
-                      fontSize: 20,
+              height: 900,
+              child: SingleChildScrollView(
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      drink["drink"],
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 20,
+                              color: Colors.deepPurple.shade600
+                          )
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 10,),
-                  Text(
-                    'About:',
-                    style: TextStyle(
-                        fontSize: 16
+                    SizedBox(height: 10,),
+                    Image.asset(drink["image_path"]),
+                    SizedBox(height: 10,),
+                    Text(
+                      'About:',
+                      style: GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                              fontSize: 18,
+                              color: Colors.deepPurple.shade800
+                          )
+                      ),
                     ),
-                  ),
-                  Text(
-                    drink["description"],
-                    style: TextStyle(
-                        fontSize: 14
+                    Text(
+                      drink["description"],
+                      style:  GoogleFonts.mukta(
+                          textStyle: TextStyle(
+                            fontSize: 16,
+                          )
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20,),
-                ],
+                    SizedBox(height: 20,),
+                  ],
+                ),
               ),
             ),
             actions: [
+              TextButton(
+                  onPressed: () {
+                    refreshDrink();
+                    Navigator.pop(context);
+                    showDrinkDialog(meal);
+                  },
+                  child: Text(
+                    "Anythin' else?",
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
+              ),
               TextButton(
                   onPressed: () {
                     if (meal == 'Breakfast'){
@@ -597,55 +856,128 @@ class _NutritionScreenState extends State<NutritionScreen> {
 
                     Navigator.pop(context);
                   },
-                  child: Text('Close')
-              ),
-              TextButton(
-                  onPressed: () {
-                    refreshDrink();
-                    Navigator.pop(context);
-                    showDrinkDialog(meal);
-                  },
-                  child: Text('Refresh')
+                  child: Text(
+                    'Looks Good!',
+                    style: GoogleFonts.mukta(
+                        textStyle: TextStyle(
+                            fontSize: 16
+                        )
+                    ),
+                  )
               ),
             ],
           );
         }
     );
   }
+
   void showMealPlan(meal){
     var meal_plan = _myBox.get(meal);
     showBottomSheet(
         context: context,
+        backgroundColor: Colors.deepPurple.shade50,
         builder: (context) {
           return Container(
-            height: 200,
+            height: 290,
             width: 400,
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '$meal Plan',
+                      style: GoogleFonts.tiltNeon(
+                          textStyle: TextStyle(
+                              fontSize: 32,
+                              color: Colors.deepPurple.shade700
+                          )
+                      ),
+                    ),
+                    SvgPicture.asset(
+                        (meal == 'Breakfast')
+                            ? 'assets/Images/breakfast.svg'
+                            : 'assets/Images/lunch_dinner.svg',
+                      height: 50,
+                      color: Colors.deepPurple.shade400,
+                    )
+                  ],
+                ),
+                SizedBox(height: 10,),
                 Text(
-                  '$meal Plan',
-                  style: TextStyle(
-                    fontSize: 32
+                  'Your Dish:',
+                  style: GoogleFonts.mukta(
+                      textStyle: TextStyle(
+                          fontSize: 22,
+                          color: Colors.deepPurple.shade700
+                      )
                   ),
                 ),
                 Text(
                   '${meal_plan[0]["dish"]}',
-                  style: TextStyle(
-                    fontSize: 16
+                  style: GoogleFonts.mukta(
+                      textStyle: TextStyle(
+                          fontSize: 18,
+                      )
+                  ),
+                  textAlign: TextAlign.right,
+                ),
+                SizedBox(height: 10,),
+                Text(
+                  'Your Drink:',
+                  style: GoogleFonts.mukta(
+                      textStyle: TextStyle(
+                          fontSize: 22,
+                          color: Colors.deepPurple.shade700
+                      )
                   ),
                 ),
                 Text(
                   '${meal_plan[1]["drink"]}',
-                  style: TextStyle(
-                    fontSize: 16
+                  style: GoogleFonts.mukta(
+                      textStyle: TextStyle(
+                        fontSize: 18,
+                      )
                   ),
+                  textAlign: TextAlign.right,
                 ),
               ],
             ),
           );
         }
+    );
+  }
+}
+
+class TitleCard extends StatelessWidget {
+  const TitleCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        SizedBox(
+          width: 200,
+          child: Text(
+            'Health and Fitness',
+            style: GoogleFonts.tiltNeon(
+                textStyle: TextStyle(
+                    fontSize: 40,
+                    color: Colors.deepPurple.shade100,
+                    fontWeight: FontWeight.bold
+                )
+            ),
+          ),
+        ),
+        SvgPicture.asset(
+          'assets/Images/fitness.svg',
+          height: 100,
+          color: Colors.deepPurple[200],
+        )
+      ],
     );
   }
 }

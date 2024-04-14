@@ -8,6 +8,7 @@ class FoodDetailsModel{
   double? protein;
   double? fiber;
   String? description;
+  String? image_path;
 
   FoodDetailsModel(
       {
@@ -16,7 +17,8 @@ class FoodDetailsModel{
         this.carbs,
         this.protein,
         this.fiber,
-        this.description
+        this.description,
+        this.image_path
       }
   );
 
@@ -27,6 +29,7 @@ class FoodDetailsModel{
     protein = json['Protein'];
     fiber = json['Fiber'];
     description = json['Description'];
+    image_path = json['image_path'];
   }
 
 }

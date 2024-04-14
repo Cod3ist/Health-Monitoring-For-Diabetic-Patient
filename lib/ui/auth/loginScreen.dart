@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
-
+import 'package:healthcare_monitoring_diabetic_patients/utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -13,10 +13,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
   bool loading = false;
-  final _auth = FirebaseAuth.instance;
+
 
   @override
   void dispose() {
@@ -26,6 +24,9 @@ class _LoginScreenState extends State<LoginScreen> {
     passwordController.dispose();
   }
 
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
   void login(){
     setState(() {
       loading = true;
@@ -39,7 +40,8 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationMenu( user: value.user!.uid.toString(),)));
     }).onError((error, stackTrace){
-      debugPrint(error.toString());
+      print(error.toString());
+      Utils().toastMessage(context, error.toString());
       setState(() {
         loading = false;
       });

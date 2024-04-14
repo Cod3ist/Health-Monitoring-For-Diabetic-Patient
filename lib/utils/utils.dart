@@ -8,6 +8,22 @@ class Utils{
       error = ['User Already Exists', 'The email address is already in use by another account.\nPlease use another email address'];
     } else if (message.contains('weak-password')){
       error = ['Weak Password', 'Password should be at least 6 characters'];
+    } else if (message.contains('invalid-level-input')){
+      error = ['Invalid Input', 'The level value must be greater than 0.\nPlease enter a valid input'];
+    } else if (message.contains('invalid-email')){
+      error = ['Invalid Email', 'The email address is badly formatted'];
+    } else if (message.contains('invalid-credential')){
+      error = ['Invalid Credentials', 'The supplied auth credential are incorrect'];
+    } else if (message.contains('invalid-user-age')){
+      error = ['Invalid Details', 'Incorrect age has been entered'];
+    } else if (message.contains('invalid-user-height')){
+      error = ['Invalid Details', 'Incorrect height has been entered'];
+    } else if (message.contains('invalid-user-weight')){
+      error = ['Invalid Details', 'Incorrect weight has been entered'];
+    } else if (message.contains('invalid-user-dob')){
+      error = ['Invalid Details', 'Incorrect date of birth has been entered'];
+    } else if (message.contains('incomplete-form')){
+      error = ['Invalid Details', 'Form is missing details.\nPlease make sure all information has been added'];
     };
     return error;
   }
@@ -33,11 +49,13 @@ class Utils{
                       diaply_msg[0].toString(),
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
-                    Text(
-                      diaply_msg[1].toString(),
-                      style: TextStyle(color: Colors.white, fontSize: 10),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
+                    Container(
+                      child: Text(
+                        diaply_msg[1].toString(),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                      ),
                     ),
                   ],
                 ),

@@ -16,10 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool loading = false;
   final _formKey = GlobalKey<FormState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
@@ -29,6 +26,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     passwordController.dispose();
   }
 
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  FirebaseAuth _auth = FirebaseAuth.instance;
   void signUp() {
     setState(() {
       loading = true;

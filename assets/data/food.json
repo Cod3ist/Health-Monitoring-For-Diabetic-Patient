@@ -2,6 +2,7 @@
   "Snacks": [
     {
       "item": "Apples",
+      "image_path": "assets/Images/foodImages/apples.jpg",
       "Glycemic Index": 36.0,
       "Carbs": 2.4,
       "Protein": 0.3,
@@ -9,7 +10,8 @@
       "Description": "Apples can be a suitable fruit choice due to their low glycemic index (GI) and high fiber content. The fiber in apples slows down the absorption of sugar into the bloodstream, helping to prevent spikes in blood sugar levels. Additionally, apples are rich in vitamins, minerals, and antioxidants, which can contribute to overall health and well-being."
     },
     {
-      "item": "Apples Juice",
+      "item": "Apple Juice",
+      "image_path": "assets/Images/foodImages/apple_juice.jpg",
       "Glycemic Index": 41.0,
       "Carbs": 11.0,
       "Protein": 0.1,
@@ -19,6 +21,7 @@
     {
       "item": "Banana",
       "Glycemic Index": 51.0,
+      "image_path": "assets/Images/foodImages/banana.jpg",
       "Carbs": 22.0,
       "Protein": 0.8,
       "Fiber": 1.9,
@@ -26,6 +29,7 @@
     },
     {
       "item": "Orange",
+      "image_path": "assets/Images/foodImages/orange.jpg",
       "Glycemic Index": 43.0,
       "Carbs": 13.0,
       "Protein": 0.9,
@@ -34,6 +38,7 @@
     },
     {
       "item": "Orange Juice",
+      "image_path": "assets/Images/foodImages/orange_juice.jpg",
       "Glycemic Index": 50.0,
       "Carbs": 10.0,
       "Protein": 0.7,
@@ -42,6 +47,7 @@
     },
     {
       "item": "Kiwi",
+      "image_path": "assets/Images/foodImages/kiwi.jpg",
       "Glycemic Index": 58.0,
       "Carbs": 14.4,
       "Protein": 1.1,
@@ -50,6 +56,7 @@
     },
     {
       "item": "Avocado",
+      "image_path": "assets/Images/foodImages/avocado.jpg",
       "Glycemic Index": 40.0,
       "Carbs": 8.6,
       "Protein": 2.0,
@@ -58,6 +65,7 @@
     },
     {
       "item": "Brown Rice",
+      "image_path": "assets/Images/foodImages/brown_rice.jpg",
       "Glycemic Index": 68.0,
       "Carbs": 76.0,
       "Protein": 7.5,
@@ -66,6 +74,7 @@
     },
     {
       "item": "Plain Rice",
+      "image_path": "assets/Images/foodImages/plain_rice.jpg",
       "Glycemic Index": 73.0,
       "Carbs": 80.0,
       "Protein": 6.6,
@@ -74,6 +83,7 @@
     },
     {
       "item": "Green Apple",
+      "image_path": "assets/Images/foodImages/green_apple.jpg",
       "Glycemic Index": 39.0,
       "Carbs": 14.0,
       "Protein": 0.0,
@@ -81,7 +91,8 @@
       "Description": "Green apples can be a good option due to their relatively low glycemic index compared to other fruits. They contain soluble fiber, which can help regulate blood sugar levels by slowing down the absorption of sugar into the bloodstream. However, it's important to monitor your portions and overall carbohydrate intake, even from fruits like green apples, to maintain stable blood sugar levels"
     },
     {
-      "item": "Coffee beans",
+      "item": "Coffee",
+      "image_path": "assets/Images/foodImages/coffee.jpg",
       "Glycemic Index": 50.0,
       "Carbs": 62.0,
       "Protein": 8.0,
@@ -90,6 +101,7 @@
     },
     {
       "item": "Green Tea",
+      "image_path": "assets/Images/foodImages/green_tea.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 2.0,
       "Protein": 0.5,
@@ -98,6 +110,7 @@
     },
     {
       "item": "Black Tea",
+      "image_path": "assets/Images/foodImages/black_tea.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 0.5,
       "Protein": 0.0,
@@ -106,6 +119,7 @@
     },
     {
       "item": "Eggs",
+      "image_path": "assets/Images/foodImages/eggs.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 2.36,
       "Protein": 10.7,
@@ -113,15 +127,8 @@
       "Description": "Eggs can be a suitable option for diabetic patients as they are a good source of protein and healthy fats, which can help stabilize blood sugar levels. Additionally, eggs are low in carbohydrates, which means they have minimal impact on blood glucose levels."
     },
     {
-      "item": "Bread",
-      "Glycemic Index": 70.0,
-      "Carbs": 49.2,
-      "Protein": 9.4,
-      "Fiber": 2.3,
-      "Description": "For diabetic patients, choosing the right bread is crucial to managing blood sugar levels. Opting for whole grain or whole wheat bread with a low glycemic index can help prevent spikes in blood sugar. Look for breads that are high in fiber and low in added sugars. Additionally, portion control is key - keeping serving sizes in check can aid in maintaining stable glucose levels throughout the day. "
-    },
-    {
       "item": "Wholemeal Bread",
+      "image_path": "assets/Images/foodImages/wholemeal_bread.jpg",
       "Glycemic Index": 65.0,
       "Carbs": 43.1,
       "Protein": 12.3,
@@ -130,6 +137,7 @@
     },
     {
       "item": "Cheddar Cheese",
+      "image_path": "assets/Images/foodImages/cheddar_cheese.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 3.4,
       "Protein": 23.0,
@@ -138,6 +146,7 @@
     },
     {
       "item": "Swiss Cheese",
+      "image_path": "assets/Images/foodImages/swiss_cheese.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 1.4,
       "Protein": 27.0,
@@ -146,6 +155,7 @@
     },
     {
       "item": "Feta Cheese",
+      "image_path": "assets/Images/foodImages/feta_cheese.jpg",
       "Glycemic Index": 0.0,
       "Carbs": 3.9,
       "Protein": 14.0,
@@ -156,6 +166,7 @@
   "Breakfast": [
     {
       "dish": "Greek Yogurt with Berries",
+      "image_path": "assets/Images/foodImages/greek_yogurt_with_berries.jpg",
       "recipe" : "A classic and easy breakfast that's packed with protein and healthy fats from the yogurt, and antioxidants and fiber from the berries.\nChoose plain Greek yogurt and top it with your favorite berries, such as strawberries, blueberries, or raspberries.\nYou can also add a sprinkle of chopped nuts or seeds for extra flavor and crunch",
       "carbs": 15,
       "protien": 17,
@@ -163,6 +174,7 @@
     },
     {
       "dish": "Eggs with Whole-Wheat Toast and Avocado",
+      "image_path": "assets/Images/foodImages/avocado-toast-with-egg.jpg",
       "recipe" : "Eggs are a great source of protein, which can help you feel full and satisfied throughout the morning.\nWhole-wheat toast provides complex carbohydrates and fiber, which help regulate blood sugar levels.\nAvocado is a healthy fat that can help keep you feeling full and also provides essential nutrients.\nYou can cook your eggs any way you like them - scrambled, fried, poached, or boiled.",
       "carbs": 16,
       "protien": 12,
@@ -170,6 +182,7 @@
     },
     {
       "dish": "Rolled Oats",
+      "image_path": "assets/Images/foodImages/rolled_oats.jpg",
       "recipe" : "Overnight oats are a convenient and healthy breakfast option that you can prepare the night before.\nMade with rolled oats, milk, yogurt, and chia seeds, overnight oats are packed with fiber and protein, which will help you stay feeling full until lunchtime.\nYou can add in your favorite toppings, such as fruit, nuts, or seeds, for extra flavor and nutrients.",
       "carbs": 30,
       "protien": 6,
@@ -177,20 +190,15 @@
     },
     {
       "dish": "Chia seed Pudding with Coconut Milk and Berries",
+      "image_path": "assets/Images/foodImages/chia_seeds_pudding_with_berries_and_coconut_milk.jpg",
       "recipe" : "Chia seeds soaked in coconut milk with chopped berries for a fiber-rich and protein-boosted pudding.",
       "carbs": 20,
       "protien": 4,
       "fiber": 10
     },
     {
-      "dish": "Cottage Cheese(low-fat)",
-      "recipe" : "",
-      "carbs": 4.9,
-      "protien": 11.3,
-      "fiber": 0
-    },
-    {
       "dish": "Scrambled Tofu with Vegetables (mushrooms, peppers)",
+      "image_path": "assets/Images/foodImages/scrambled_tofu_with_mushrooms_and_peppers.jpg",
       "recipe" : "",
       "carbs": 5.2,
       "protien": 8,
@@ -198,6 +206,7 @@
     },
     {
       "dish": "Smoked Salmon with Whole-Wheat Bagel (thin slice)",
+      "image_path": "assets/Images/foodImages/smoked_salmon_with_whole_wheat_bagel.jpg",
       "recipe" : "",
       "carbs": 31.4,
       "protien": 26.1,
@@ -205,6 +214,7 @@
     },
     {
       "dish": "Breakfast Frittata with Vegetables and Cheese",
+      "image_path": "assets/Images/foodImages/breakfast_frttata_with_vegetables_and_cheese.jpg",
       "recipe" : "Scramble eggs with chopped vegetables like spinach, peppers, and onions. Add a sprinkle of cheese for added protein and flavor.",
       "carbs": 6,
       "protien": 15,
@@ -212,6 +222,7 @@
     },
     {
       "dish": "Noodles with Eggs and Kimchi",
+      "image_path": "assets/Images/foodImages/noodles_with _egg_and_kimchi.jpg",
       "recipe" : "Replace traditional noodles with low-carb shirataki noodles. Stir-fry them with scrambled eggs and kimchi for a spicy and satisfying breakfast. ",
       "carbs": 5,
       "protien": 10,
@@ -219,6 +230,7 @@
     },
     {
       "dish": "Turkey Sausage Patties with Avocado",
+      "image_path": "assets/Images/foodImages/turkey_saussage_patties_with_avocado.jpg",
       "recipe" : "Grill or pan-fry turkey sausage patties for a protein boost. Pair them with sliced avocado for healthy fats and fiber.",
       "carbs": 1,
       "protien": 20,
@@ -226,6 +238,7 @@
     },
     {
       "dish": "Flaxseed Pancakes with Berries",
+      "image_path": "assets/Images/foodImages/flaxseed_pancakes_with_berries.jpg",
       "recipe" : "Make pancakes using ground flaxseed meal, almond milk, and an egg. Top them with fresh berries for extra fiber and antioxidants.",
       "carbs": 25,
       "protien": 12,
@@ -233,6 +246,7 @@
     },
     {
       "dish": "Stuffed Bell Peppers with Quinoa and Vegetables",
+      "image_path": "assets/Images/foodImages/stuffed_bell_peppers_with_quinoa_and_vegetables.jpg",
       "recipe" : " Roast bell peppers and stuff them with cooked quinoa, chopped vegetables, and a lean protein like chicken or lentils.",
       "carbs": 22,
       "protien": 8,
@@ -240,6 +254,7 @@
     },
     {
       "dish": "Cottage Cheese Savory Pancake",
+      "image_path": "assets/Images/foodImages/cottage_cheese_savory_pancake.jpg",
       "recipe" : "Made with mashed paneer (cottage cheese), gram flour (besan), vegetables like onions and peppers, and spices. ",
       "carbs": 15,
       "protien": 12,
@@ -247,6 +262,7 @@
     },
     {
       "dish": "Savory Semolina Porridge",
+      "image_path": "assets/Images/foodImages/savory_semolina_porridge.jpg",
       "recipe" : "Sprouts like moong dal (green gram) are cooked with semolina (sooji), chopped vegetables, and spices.",
       "carbs": 20,
       "protien": 8,
@@ -254,6 +270,7 @@
     },
     {
       "dish": "Flatbread with Fenugreek Leaves",
+      "image_path": "assets/Images/foodImages/flatbread_with_fenugreek_leaves.jpg",
       "recipe" : "Whole wheat flour dough stuffed with fenugreek leaves and spices, cooked on a griddle.",
       "carbs": 30,
       "protien": 8,
@@ -261,6 +278,7 @@
     },
     {
       "dish": "Flattened Rice Dish",
+      "image_path": "assets/Images/foodImages/flattened_rice_dish.jpg",
       "recipe" : " Flattened rice (poha) stir-fried with vegetables like onions, peas, and spices.",
       "carbs": 35,
       "protien": 4,
@@ -268,6 +286,7 @@
     },
     {
       "dish": "Broken Wheat Porridge",
+      "image_path": "assets/Images/foodImages/broken_wheat_porridge.jpg",
       "recipe" : "Cracked wheat (dalia) cooked with milk or water, nuts, and spices.",
       "carbs": 25,
       "protien": 7,
@@ -275,6 +294,7 @@
     },
     {
       "dish": "Spiced Minced Chicken with Flatbread",
+      "image_path": "assets/Images/foodImages/spiced_minced_chicken_with_flatbread.jpg",
       "recipe" : "Minced chicken cooked with spices and served with whole wheat roti.",
       "carbs": 25,
       "protien": 20,
@@ -282,6 +302,7 @@
     },
     {
       "dish": "Savory Pancake with Green Lentils",
+      "image_path": "",
       "recipe" : "Made with soaked and ground green lentils (moong dal), vegetables like onions and peppers, and spices.",
       "carbs": 20,
       "protien": 15,
@@ -289,6 +310,7 @@
     },
     {
       "dish": "Thick Savory Pancake",
+      "image_path": "assets/Images/foodImages/thick_savoury_pancakes.jpg",
       "recipe" : "Made with fermented lentil and rice batter (dosa batter) with chopped vegetables cooked on a griddle. ",
       "carbs": 30,
       "protien": 4,
@@ -296,6 +318,7 @@
     },
     {
       "dish": "Pearl Sago Porridge",
+      "image_path": "assets/Images/foodImages/pearl_sago_porridge.jpg",
       "recipe" : "Pearl sago (sabudana) cooked with peanuts, boiled potatoes, and spices. ",
       "carbs": 38,
       "protien": 4,
@@ -305,6 +328,7 @@
   "Meal": [
     {
       "dish": "Grilled Salmon with Roasted Vegetables and Quinoa",
+      "image_path": "assets/Images/foodImages/grilled_salmon_with_roasted_vegetables_and_quinoa.jpg",
       "recipe" : "",
       "carbs": 17,
       "protien": 26,
@@ -313,12 +337,14 @@
     {
       "dish": "Chicken Stir-Fry with Brown Rice and Broccoli",
       "recipe" : "",
+      "image_path": "assets/Images/foodImages/chicken_stir_fry_with_brown_rice_and_broccoli.jpg",
       "carbs": 29,
       "protien": 39,
       "fiber": 5.1
     },
     {
       "dish": "Lentil Soup with Whole-Wheat Bread",
+      "image_path": "assets/Images/foodImages/lentil_soup_with_whole_wheat_bread.jpg",
       "recipe" : "",
       "carbs": 24,
       "protien": 28,
@@ -326,6 +352,7 @@
     },
     {
       "dish": "Black Bean Burgers on Whole-Wheat Buns",
+      "image_path": "assets/Images/foodImages/black_bean_burgers.jpg",
       "recipe" : "",
       "carbs": 39,
       "protien": 18,
@@ -333,6 +360,7 @@
     },
     {
       "dish": "Pearl Sago Porridge",
+      "image_path": "assets/Images/foodImages/pearl_sago_porridge.jpg",
       "recipe" : "",
       "carbs": 38,
       "protien": 4,
@@ -340,6 +368,7 @@
     },
     {
       "dish": "Tofu Scramble with Vegetables and Whole-Wheat Toast",
+      "image_path": "assets/Images/foodImages/tofu_scrambled_with_vegetables_and_whole_wheat_toast.jpg",
       "recipe" : "",
       "carbs": 21,
       "protien": 13,
@@ -347,6 +376,7 @@
     },
     {
       "dish": "Chicken Breast with Sweet Potato and Green Beans",
+      "image_path": "chicken_bread_with_sweat_potato_and_green_beans.jpg",
       "recipe" : "",
       "carbs": 25,
       "protien": 36,
@@ -354,6 +384,7 @@
     },
     {
       "dish": "Salmon with Quinoa Salad",
+      "image_path": "assets/Images/foodImages/salmon_with_quinoa_salad.jpg",
       "recipe" : "",
       "carbs": 17,
       "protien": 26,
@@ -361,6 +392,7 @@
     },
     {
       "dish": "Turkey Chili with Whole-Wheat Crackers",
+      "image_path": "assets/Images/foodImages/turkey_chilli_with_whole_wheat_crackers.jpg",
       "recipe" : "",
       "carbs": 33,
       "protien": 42,
@@ -368,6 +400,7 @@
     },
     {
       "dish": "Shrimp Scampi with Whole-Wheat Pasta and Zucchini Noodles",
+      "image_path": "assets/Images/foodImages/shrimp_scampi_with_whole_wheat_pasta_and_zucchini_noodles.jpg",
       "recipe" : "",
       "carbs": 24,
       "protien": 26,
@@ -375,6 +408,7 @@
     },
     {
       "dish": "Tuna Salad with Whole-Wheat Wrap and Mixed Greens",
+      "image_path": "assets/Images/foodImages/tuna_salad_with_whole_wheat_wrap_and_mixed_greens.jpg",
       "recipe" : "",
       "carbs": 35,
       "protien": 32,
@@ -382,6 +416,7 @@
     },
     {
       "dish": "Eggplant Parmesan with Whole-Wheat Breadcrumb Crust",
+      "image_path": "assets/Images/foodImages/eggplant_parmesan_with_whole_wheat_breadcrumb_crust.jpg",
       "recipe" : "",
       "carbs": 45,
       "protien": 9,
@@ -389,6 +424,7 @@
     },
     {
       "dish": "Chicken Fajitas with Whole-Wheat Tortillas and Black Beans",
+      "image_path": "assets/Images/foodImages/chicken_fajitas_with_whoe_wheat_tortillas_and_black_beans.jpg",
       "recipe" : "",
       "carbs": 35,
       "protien": 42.5,
@@ -396,20 +432,15 @@
     },
     {
       "dish": "Lentil and Vegetable Curry with Brown Rice",
+      "image_path": "assets/Images/foodImages/lentil_and_vegetable_curry_with_brown_rice.jpg",
       "recipe" : "",
       "carbs": 43,
       "protien": 15.5,
       "fiber": 10.3
     },
     {
-      "dish": "Tuna Salad with Whole-Wheat Wrap and Mixed Greens",
-      "recipe" : "",
-      "carbs": 35,
-      "protien": 32,
-      "fiber": 6
-    },
-    {
       "dish": "Baked Tofu with Roasted Brussels Sprouts and Quinoa",
+      "image_path": "assets/Images/foodImages/baked_tofu_and_roasted_brussels_sprouts_and_quinoa.jpg",
       "recipe" : "",
       "carbs": 17,
       "protien": 13,
@@ -417,6 +448,7 @@
     },
     {
       "dish": "Turkey Meatloaf with Mashed Cauliflower and Green Beans",
+      "image_path": "assets/Images/foodImages/turkey_meatloaf_with_mashed_cauliflower_and_green_beans.jpg",
       "recipe" : "",
       "carbs": 10,
       "protien": 28.5,
@@ -424,6 +456,7 @@
     },
     {
       "dish": "Chicken Stir-Fry with Noodles and Mixed Vegetables",
+      "image_path": "assets/Images/foodImages/stir_fry_vegetable_noodles.jpg",
       "recipe" : "",
       "carbs": 10,
       "protien": 35,
@@ -431,6 +464,7 @@
     },
     {
       "dish": "Salmon with Roasted Asparagus and Quinoa",
+      "image_path": "",
       "recipe" : "",
       "carbs": 15,
       "protien": 32,
@@ -438,6 +472,7 @@
     },
     {
       "dish": "Black Bean Burgers on Lettuce Wraps with Avocado",
+      "image_path": "assets/Images/foodImages/salmon_wroasted_asparagus_quinoa.jpg",
       "recipe" : "",
       "carbs": 32,
       "protien": 19,
@@ -445,6 +480,7 @@
     },
     {
       "dish": "Tofu Scramble with Whole-Wheat Toast and Berries",
+      "image_path": "assets/Images/foodImages/tofu_scramble_whole_wheat_toast_berries.jpg",
       "recipe" : "",
       "carbs": 28,
       "protien": 14,
@@ -453,47 +489,53 @@
   ],
   "Drink" : [
     {
-      "drink": "Greek yogurt smoothie ",
+      "drink": "Greek yogurt smoothie",
+      "image_path": "assets/Images/foodImages/greek_yogurt_smoothie.jpg",
       "description": "Combine unsweetened almond milk, plain Greek yogurt (for protein), a handful of berries (for some carbs and fiber), and a sprinkle of chia seeds (for extra fiber) for a thick and satisfying drink. A typical smoothie with 1 cup unsweetened almond milk, ½ cup plain Greek yogurt, ½ cup berries, and 1 tablespoon chia seeds might have around 15-20 grams carbs, 20 grams protein, and 5-7 grams fiber."
     },
     {
       "drink": "Vegetable juice",
+      "image_path": "assets/Images/foodImages/vegetable_juice.jpg",
       "description": "Vegetable juice is a good source of vitamins and minerals. However, it can also be high in sodium. Choose low-sodium vegetable juice or dilute it with water."
     },
     {
       "drink": "Chia seed drink",
+      "image_path": "assets/Images/foodImages/chia_seeds_drink.jpg",
       "description": "Chia seeds are high in fiber and can help regulate blood sugar. Soak chia seeds in unsweetened almond milk or water overnight for a refreshing drink. You can add a touch of stevia or sugar substitute for sweetness. A typical chia seed drink with 1 cup unsweetened almond milk and 2 tablespoons chia seeds might have around 5 grams carbs, 2 grams protein, and 5 grams fiber"
     },
     {
       "drink": "Sparkling water with a squeeze of lemon or lime ",
+      "image_path": "assets/Images/foodImages/sparkling_water_lemon.jpg",
       "description": "A refreshing option with a natural citrus twist."
     },
     {
       "drink": "Sugar-free herbal tea with chia seeds",
+      "image_path": "assets/Images/foodImages/chia_seeds_tea.jpg",
       "description": "Steep your favorite sugar-free herbal tea and add a tablespoon of chia seeds for a fiber boost. The chia seeds will absorb liquid and expand, creating a more filling drink."
     },
     {
       "drink": "Sparkling water with berries and a squeeze of lime",
+      "image_path": "assets/Images/foodImages/sparkling_water_lemon_berries.jpg",
       "description": "This bubbly drink provides hydration with a hint of fruit flavor without added sugar.\n\n"
     },
     {
       "drink": "Kombucha (unsweetened)",
+      "image_path": "assets/Images/foodImages/kombucha.jpg",
       "description": " This fermented tea drink is a source of probiotics, which can benefit gut health. Choose unsweetened varieties and be mindful of potential interactions with medications. Consult your doctor before trying kombucha if you have any concerns."
     },
     {
-      "drink": "Sparkling water with a squeeze of lemon or lime ",
-      "description": ""
-    },
-    {
       "drink": "Tomato juice",
+      "image_path": "assets/Images/foodImages/tomato_juice.jpg",
       "description": "tomato juice is technically a fruit juice but has a low GI and can be a source of vitamins and antioxidants. Opt for low-sodium versions or dilute it with water."
     },
     {
       "drink": "Sparkling water with a splash of cranberry juice and a sprig of rosemary",
+      "image_path": "assets/Images/foodImages/sprkling_water_cranberry_rosemary.jpg",
       "description": "This adds a festive touch with minimal sugar impact. Cranberry juice, in small amounts, may offer some urinary tract health benefits.\n\n"
     },
     {
-      "drink": "Iced green tea with a squeeze of blood orange and a dollop of sugar-free whipped cream:",
+      "drink": "Iced green tea with a squeeze of blood orange and a dollop of sugar-free whipped cream",
+      "image_path": "assets/Images/foodImages/orange_iced_tea_whipped_cream'.jpg",
       "description": " This combines the benefits of green tea with a citrusy and creamy twist. Opt for a small amount of whipped cream to minimize added sugar and fat."
     }
   ]

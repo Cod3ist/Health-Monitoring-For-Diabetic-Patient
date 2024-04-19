@@ -5,7 +5,7 @@ class Utils{
   List checkError(String message){
     var error;
     if (message.contains('email-already-in-use')){
-      error = ['User Already Exists', 'The email address is already in use by another account.\nPlease use another email address'];
+      error = ['User Already Exists', 'The email address is already in use.\nPlease use another email address'];
     } else if (message.contains('weak-password')){
       error = ['Weak Password', 'Password should be at least 6 characters'];
     } else if (message.contains('invalid-level-input')){

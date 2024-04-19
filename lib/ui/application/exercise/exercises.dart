@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/counter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -63,7 +64,18 @@ class _ExercisesState extends State<Exercises> {
         builder: (context, player) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Exercises'),
+                backgroundColor: Colors.deepPurple[100],
+                title: Text(
+                  'Exercises',
+                  style: GoogleFonts.aBeeZee(
+                      textStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.deepPurple.shade900
+                      )
+                  ),
+                ),
+                centerTitle: true,
             ),
             body: Container(
               padding: EdgeInsets.all(20),
@@ -73,7 +85,13 @@ class _ExercisesState extends State<Exercises> {
                   Text(
                     'Walking',
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 23),
+                    style: GoogleFonts.tiltNeon(
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.deepPurple.shade900,
+                      ),
+                    ),
                   ),
                   Divider(
                     thickness: 1,
@@ -109,8 +127,14 @@ class _ExercisesState extends State<Exercises> {
                             ),
                             Text(
                               'Steps taken:',
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.grey),
+                              textAlign: TextAlign.start,
+                              style: GoogleFonts.mukta(
+                                textStyle: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey,
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -125,7 +149,16 @@ class _ExercisesState extends State<Exercises> {
                     children: [
                       ElevatedButton(
                         onPressed: _startStop,
-                        child: Text(_isStarted ? 'Stop' : 'Start'),
+                        child: Text(
+                            _isStarted ? 'Stop' : 'Start',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.mukta(
+                            textStyle: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                       ElevatedButton(
                         onPressed: (){
@@ -134,7 +167,16 @@ class _ExercisesState extends State<Exercises> {
                             value = counter.value;
                           });
                         },
-                        child: Text('restart'),
+                        child: Text(
+                            'Restart',
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.mukta(
+                            textStyle: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -144,7 +186,13 @@ class _ExercisesState extends State<Exercises> {
                   Text(
                     'Mild Exercises',
                     textAlign: TextAlign.start,
-                    style: TextStyle(fontSize: 23),
+                    style: GoogleFonts.tiltNeon(
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.deepPurple.shade900,
+                      ),
+                    ),
                   ),
                   Divider(
                     thickness: 1,

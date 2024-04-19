@@ -55,6 +55,7 @@ class _MedicalReportsState extends State<MedicalReports> {
                 future: getMedicalReports(widget.user),
                 builder: (context, snapshot){
                   if (snapshot.connectionState == ConnectionState.done){
+                    if(snapshot.hasData){
                     Map<String, dynamic> map = snapshot.data;
                     print(map);
                     return Column(
@@ -129,7 +130,23 @@ class _MedicalReportsState extends State<MedicalReports> {
                           )
                         ]
                       ],
-                    );
+                    );}
+                    else{
+                      return SizedBox(
+                        height: 500,
+                        child: Center(
+                          child: Text(
+                            'No Report to Display',
+                            style: GoogleFonts.tiltNeon(
+                                textStyle: TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.grey,
+                                )
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                   } else {
                     return Center(
                       child: CircularProgressIndicator()

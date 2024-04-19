@@ -29,9 +29,6 @@ class _NutritionScreenState extends State<NutritionScreen> {
   late Map<String, dynamic> breakfast;
   late Map<String, dynamic> lunch_dinner;
   late Map<String, dynamic> drink;
-  List breakfast_data = [];
-  List lunch_data = [];
-  List dinner_data = [];
 
   Future<void> setMeal() async {
     final String response = await rootBundle.loadString(
@@ -78,12 +75,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
       _myBox.put('Date', DateFormat('yyyy-MM-dd').format(DateTime.now()));
       print(_myBox.get('Date'));
     } else {
-      print(_myBox.keys);
+      print(_myBox.get('Breakfast'));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 35),
@@ -141,7 +139,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                               onPressed: () {
                                 showBreakfastDialog('Breakfast');
                                 setState(() {
-                                  breakfast_data.clear();
+                                  _setBreakfast = false;
                                 });
                               },
                               child: Text(
@@ -190,7 +188,6 @@ class _NutritionScreenState extends State<NutritionScreen> {
                           onPressed: () {
                             showMealDialog('Lunch');
                             setState(() {
-                              lunch_data.clear();
                               _setLunch = false;
                             });
                           },
@@ -240,7 +237,6 @@ class _NutritionScreenState extends State<NutritionScreen> {
                               onPressed: () {
                                 showMealDialog('Dinner');
                                 setState(() {
-                                  dinner_data.clear();
                                   _setDinner = false;
                                 });
                               },
@@ -298,13 +294,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          _myBox.delete('Breakfast');
-          _myBox.delete('Lunch');
-          _myBox.delete('Dinner');
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: (){
+      //     _myBox.delete('Breakfast');
+      //     _myBox.delete('Lunch');
+      //     _myBox.delete('Dinner');
+      //   },
+      // ),
     );
   }
 
@@ -514,11 +510,11 @@ class _NutritionScreenState extends State<NutritionScreen> {
               ),
               TextButton(
                   onPressed: () {
-                    setState(() {
-                      breakfast_data.add(breakfast);
-                    });
+                    // setState(() {
+                    //   breakfast_data.add(breakfast);
+                    // });
                     Navigator.pop(context);
-                    showDrinkDialog(meal);
+                    showDrinkDialog(meal, breakfast);
                   },
                   child: Text(
                     'Looks Good!',
@@ -738,17 +734,8 @@ class _NutritionScreenState extends State<NutritionScreen> {
               ),
               TextButton(
                   onPressed: () {
-                    if (meal =='Lunch') {
-                      setState(() {
-                        lunch_data.add(lunch_dinner);
-                      });
-                    } else {
-                      setState(() {
-                        dinner_data.add(lunch_dinner);
-                      });
-                    }
                     Navigator.pop(context);
-                    showDrinkDialog(meal);
+                    showDrinkDialog(meal, lunch_dinner);
                   },
                   child: Text(
                     'Looks Good!',
@@ -764,7 +751,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
         }
     );
   }
-  void showDrinkDialog(meal) {
+  void showDrinkDialog(meal, item) {
     showDialog(
         context: context, // Allow dismissal by tapping outside
         builder: (context) {
@@ -824,7 +811,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   onPressed: () {
                     refreshDrink();
                     Navigator.pop(context);
-                    showDrinkDialog(meal);
+                    showDrinkDialog(meal, item);
                   },
                   child: Text(
                     "Anythin' else?",
@@ -839,21 +826,23 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   onPressed: () {
                     if (meal == 'Breakfast'){
                       setState(() {
-                        breakfast_data.add(drink);
+                        // breakfast_data.add([item, drink]);
+                        _setBreakfast = false;
                       });
-                      _myBox.put('Breakfast', breakfast_data);
+                      _myBox.put('Breakfast', [item, drink]);
                     } else if (meal == 'Lunch'){
                       setState(() {
-                        lunch_data.add(drink);
+                        // lunch_data.add(drink);
+                        _setLunch = false;
                       });
-                      _myBox.put('Lunch', lunch_data);
+                      _myBox.put('Lunch', [item, drink]);
                     } else {
                       setState(() {
-                        dinner_data.add(drink);
+                        // dinner_data.add(drink);
+                        _setDinner = false;
                       });
-                      _myBox.put('Dinner', dinner_data);
+                      _myBox.put('Dinner', [item, drink]);
                     }
-
                     Navigator.pop(context);
                   },
                   child: Text(

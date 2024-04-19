@@ -15,12 +15,12 @@ class SplashServices{
 
     if (user!=null) {
       // String user_uid = await UIDStorage.getUID().toString();
-      Timer(const Duration(seconds: 3), () {
+      Timer(const Duration(seconds: 4), () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) =>  NavigationMenu(user: user.uid,)));
       });
     } else {
-      Timer(const Duration(seconds: 3),
+      Timer(const Duration(seconds: 4),
       () =>
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => WelcomeScreen()))

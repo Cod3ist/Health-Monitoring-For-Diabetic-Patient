@@ -21,8 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:  Color.fromRGBO(238, 179, 231, 1.0),
       body: Center(
-        child: Text('Healthcare system'),
+        child: Image.asset('assets/Images/SUGAR_AIDE.gif'),
       )
     );
   }

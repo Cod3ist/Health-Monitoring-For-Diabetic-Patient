@@ -145,22 +145,36 @@ class _MedicationCardListState extends State<MedicationCardList> {
           future: fetchMedications(widget.user),
           builder: (context, snapshot){
             if (snapshot.connectionState == ConnectionState.done){
-              Map<String, dynamic> map = snapshot.data;
-              List keys = map.values.toList();
-              print(keys);
-              return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3, crossAxisSpacing: 8, mainAxisSpacing: 8),
-                itemCount: keys.length,
-                itemBuilder: (context, index){
-                  var _key = map.keys.firstWhere((key) => map[key] == key[index], orElse: () => 'null');
-                  return MedicationsList(title: keys[index]['name'], type: keys[index]['type'], description: keys[index], user: widget.user,);
-                },
-                padding: EdgeInsets.all(8),
-
-              );
+              // print(snapshot.data.runtimeType.toString());
+              if (snapshot.data.runtimeType.toString() != '_Map<dynamic, dynamic>'){
+                Map<String, dynamic> map = snapshot.data;
+                List keys = map.values.toList();
+                print(keys.runtimeType);
+                return GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, crossAxisSpacing: 8, mainAxisSpacing: 8),
+                  itemCount: keys.length,
+                  itemBuilder: (context, index){
+                    var _key = map.keys.firstWhere((key) => map[key] == key[index], orElse: () => 'null');
+                    return MedicationsList(title: keys[index]['name'], type: keys[index]['type'], description: keys[index], user: widget.user,);
+                  },
+                  padding: EdgeInsets.all(8),
+                );
+              } else {
+                return Center(
+                  child: Text(
+                    'No Medications added',
+                    style: GoogleFonts.tiltNeon(
+                        textStyle: TextStyle(
+                          fontSize: 40,
+                          color: Colors.grey,
+                        )
+                    ),
+                  ),
+                );
+              }
             } else {
-              return Container();
+              return Center(child: CircularProgressIndicator());
             }
           }
       ),

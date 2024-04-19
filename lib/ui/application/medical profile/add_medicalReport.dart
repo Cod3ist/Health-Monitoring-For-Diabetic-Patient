@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:healthcare_monitoring_diabetic_patients/navigator/navigator.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/medical%20profile/medicalReports.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 import 'package:intl/intl.dart';
@@ -393,7 +394,8 @@ class _AddReportState extends State<AddReport> {
                         "TSH": TSH.text
                       }};
                       database.ref(widget.user).child('Medical History').child('Medical Reports').update(value.cast<String, Object?>());
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationMenu(user: widget.user)));
                     }
                     // Navigator.push(context, MaterialPageRoute(builder: (context) => MedicalReports(user: widget.user)));
                   },

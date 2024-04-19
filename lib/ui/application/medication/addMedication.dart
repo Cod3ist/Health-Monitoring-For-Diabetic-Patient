@@ -22,6 +22,7 @@ class _NewEntryMedicineState extends State<NewEntryMedicine> {
   String medicineType = '';
   final _formKey_1 = GlobalKey<FormState>();
   final _formKey_2 = GlobalKey<FormState>();
+  bool loading = false;
 
 
   @override
@@ -49,7 +50,7 @@ class _NewEntryMedicineState extends State<NewEntryMedicine> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InfoPanel(controller: nameController, title: 'Medicine Name', formKey: _formKey_1,),
-            InfoPanel(controller: dosageController, title: 'Dosage in mg',medicineType: medicineType, formKey: _formKey_2,),
+            InfoPanel(controller: dosageController, title: 'Dosage',medicineType: medicineType, formKey: _formKey_2,),
             MedicineNotes(controller: notesController,),
             Text(
               'Medicine Type',
@@ -98,12 +99,16 @@ class _NewEntryMedicineState extends State<NewEntryMedicine> {
             ),
             RoundButton(
                 title: 'Confirm',
+                loading: loading,
                 onTap: (){
+                  setState(() {
+                    loading = true;
+                  });
                   if (_formKey_1.currentState!.validate()){
-                    if (_formKey_2.currentState!.validate()){
+                    if (medicineType != 'Syringe'){
                       var rng = new Random();
                       var code = rng.nextInt(900000) + 100000;
-                      if(medicineType != 'Syringe'){
+                      if(_formKey_2.currentState!.validate()){
                         database
                             .ref(widget.user)
                             .child('Medical History')
@@ -130,8 +135,14 @@ class _NewEntryMedicineState extends State<NewEntryMedicine> {
                         });
                       }
                       Navigator.push(context, MaterialPageRoute(builder: (context) => NavigationMenu(user: widget.user)));
+                      setState(() {
+                        loading = true;
+                      });
+                    } else {
+                      setState(() {
+                        loading = true;
+                      });
                     }
-
                   }
                 }
             )

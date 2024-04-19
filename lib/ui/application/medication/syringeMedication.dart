@@ -131,172 +131,195 @@ class _SyringeMedicineDetailsState extends State<SyringeMedicineDetails> {
                 future: fetchValues(widget.user),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
-                    Map<String, dynamic> map = snapshot.data;
-                    return Column(
-                      children: [
-                        MainSection(currentBGL: map["Current"].toString(), targetBGL: map["Target"].toString()),
-                        SizedBox(height: 20,),
-                        Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'CarbCalculator',
-                            style: GoogleFonts.tiltNeon(
-                              textStyle: TextStyle(
-                                fontSize: 35,
-                                color: Colors.deepPurple[900]
-                              )
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 15,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'ICR value: ',
-                              style: GoogleFonts.mukta(
+                    print(snapshot.data.runtimeType);
+                    if (snapshot.data.runtimeType.toString() != 'List<dynamic>' && snapshot.hasData) {
+                      Map<String, dynamic> map = snapshot.data;
+                      return Column(
+                        children: [
+                          MainSection(currentBGL: map["Current"].toString(),
+                              targetBGL: map["Target"].toString()),
+                          SizedBox(height: 20,),
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'CarbCalculator',
+                              style: GoogleFonts.tiltNeon(
                                   textStyle: TextStyle(
-                                      fontSize: 25,
+                                      fontSize: 35,
                                       color: Colors.deepPurple[900]
                                   )
-                              )
-                            ),
-                            Flexible(
-                              child: DropdownMenu<String>(
-                                  hintText: (ICRValue == 0)
-                                      ? 'Choose'
-                                      : ICR[ICRValue].toString(),
-                                  onSelected: (String? value) {
-                                    setState(() {
-                                      ICRValue = int.tryParse(value!)!;
-                                    });
-                                  },
-                                  dropdownMenuEntries: ICR.keys
-                                      .toList()
-                                      .map<DropdownMenuEntry<String>>((int e) {
-                                    return DropdownMenuEntry(
-                                      value: e.toString(),
-                                      label: ICR[e].toString(),
-                                    );
-                                  }).toList()),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'ISF value: ',
-                                style: GoogleFonts.mukta(
-                                    textStyle: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.deepPurple[900]
-                                    )
-                                )
-                            ),
-                            Flexible(
-                              child: DropdownMenu<int>(
-                                  hintText: (ISFValue == 0)
-                                      ? 'Choose'
-                                      : ISFValue.toString(),
-                                  onSelected: (int? value) {
-                                    setState(() {
-                                      ISFValue = value!;
-                                    });
-                                  },
-                                  dropdownMenuEntries:
-                                      ISF.map<DropdownMenuEntry<int>>((int e) {
-                                    return DropdownMenuEntry(
-                                      value: e,
-                                      label: e.toString(),
-                                    );
-                                  }).toList()),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10,),
-                        Row(
-                          children: [
-                            Text(
-                                'Carb Intake:',
-                                style: GoogleFonts.mukta(
-                                    textStyle: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.deepPurple[900]
-                                    )
-                                )
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Flexible(
-                              child: TextField(
-                                controller: carbController,
-                                keyboardType: TextInputType.number,
-                                decoration:InputDecoration(hintText: 'Enter Value'),
                               ),
-                            )
-                          ],
-                        ),
-                        SizedBox(height: 30,),
-                        TextButton(
-                          onPressed: () {
-                            calculator.calculate(map["Target"].toDouble(), map["Current"].toDouble(), ICRValue, ISFValue, int.parse(carbController.text));
-                            showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                title: Text(
-                                  'Units: ',
-                                  style: GoogleFonts.tiltNeon(
-                                    fontSize: 30
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.all(20),
-                                content: Container(
-                                  height: 100,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        // '${_calculate(map["Target"], map["Current"], ICRValue, ISFValue, int.tryParse(carbController.text))}',
-                                        '${calculator.result.toStringAsFixed(2)}',
-                                        style: GoogleFonts.mukta(
-                                          textStyle: TextStyle(
-                                            fontSize: 25
-                                          )
-                                        ),
-                                      ),
-                                      SizedBox(height: 2,),
-                                      Text(
-                                        '**recommended to round down to the nearest 0.5 units',
-                                        style: GoogleFonts.mukta(
-                                          fontSize: 15,
-                                          color: Colors.grey
-                                        )
+                            ),
+                          ),
+                          SizedBox(height: 15,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                  'ICR value: ',
+                                  style: GoogleFonts.mukta(
+                                      textStyle: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.deepPurple[900]
                                       )
-                                    ],
-                                  ),
+                                  )
+                              ),
+                              Flexible(
+                                child: DropdownMenu<String>(
+                                    hintText: (ICRValue == 0)
+                                        ? 'Choose'
+                                        : ICR[ICRValue].toString(),
+                                    onSelected: (String? value) {
+                                      setState(() {
+                                        ICRValue = int.tryParse(value!)!;
+                                      });
+                                    },
+                                    dropdownMenuEntries: ICR.keys
+                                        .toList()
+                                        .map<DropdownMenuEntry<String>>((
+                                        int e) {
+                                      return DropdownMenuEntry(
+                                        value: e.toString(),
+                                        label: ICR[e].toString(),
+                                      );
+                                    }).toList()),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                  'ISF value: ',
+                                  style: GoogleFonts.mukta(
+                                      textStyle: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.deepPurple[900]
+                                      )
+                                  )
+                              ),
+                              Flexible(
+                                child: DropdownMenu<int>(
+                                    hintText: (ISFValue == 0)
+                                        ? 'Choose'
+                                        : ISFValue.toString(),
+                                    onSelected: (int? value) {
+                                      setState(() {
+                                        ISFValue = value!;
+                                      });
+                                    },
+                                    dropdownMenuEntries:
+                                    ISF.map<DropdownMenuEntry<int>>((int e) {
+                                      return DropdownMenuEntry(
+                                        value: e,
+                                        label: e.toString(),
+                                      );
+                                    }).toList()),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                          Row(
+                            children: [
+                              Text(
+                                  'Carb Intake:',
+                                  style: GoogleFonts.mukta(
+                                      textStyle: TextStyle(
+                                          fontSize: 25,
+                                          color: Colors.deepPurple[900]
+                                      )
+                                  )
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                child: TextField(
+                                  controller: carbController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                      hintText: 'Enter Value'),
                                 ),
                               )
-                            );
-                          },
-                          child: Text(
-                              'Calculate',
-                            style: TextStyle(
-                              fontSize: 20
-                            ),
-                          )
+                            ],
+                          ),
+                          SizedBox(height: 30,),
+                          TextButton(
+                              onPressed: () {
+                                calculator.calculate(map["Target"].toDouble(),
+                                    map["Current"].toDouble(), ICRValue,
+                                    ISFValue, int.parse(carbController.text));
+                                showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        AlertDialog(
+                                          title: Text(
+                                            'Units: ',
+                                            style: GoogleFonts.tiltNeon(
+                                                fontSize: 30
+                                            ),
+                                          ),
+                                          contentPadding: EdgeInsets.all(20),
+                                          content: Container(
+                                            height: 100,
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .start,
+                                              children: [
+                                                Text(
+                                                  // '${_calculate(map["Target"], map["Current"], ICRValue, ISFValue, int.tryParse(carbController.text))}',
+                                                  '${calculator.result
+                                                      .toStringAsFixed(2)}',
+                                                  style: GoogleFonts.mukta(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 25
+                                                      )
+                                                  ),
+                                                ),
+                                                SizedBox(height: 2,),
+                                                Text(
+                                                    '**recommended to round down to the nearest 0.5 units',
+                                                    style: GoogleFonts.mukta(
+                                                        fontSize: 15,
+                                                        color: Colors.grey
+                                                    )
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                );
+                              },
+                              child: Text(
+                                'Calculate',
+                                style: TextStyle(
+                                    fontSize: 20
+                                ),
+                              )
+                          ),
+                          SizedBox(height: 30,),
+                          RoundButton(
+                            onTap: () {
+                              openAlertBox(context);
+                            },
+                            title: 'Delete',
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Center(
+                        child: Text(
+                          'Please add your current BGL level',
+                          style: GoogleFonts.tiltNeon(
+                              textStyle: TextStyle(
+                                fontSize: 40,
+                                color: Colors.grey,
+                              )
+                          ),
                         ),
-                        SizedBox(height: 30,),
-                        RoundButton(
-                          onTap: () {
-                            openAlertBox(context);
-                          },
-                          title: 'Delete',
-                        ),
-                      ],
-                    );
+                      );
+                    }
                   } else {
                     return Container();
                   }

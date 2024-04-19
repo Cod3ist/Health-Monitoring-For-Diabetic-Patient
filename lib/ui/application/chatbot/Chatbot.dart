@@ -25,7 +25,7 @@ class _ChatbotState extends State<Chatbot> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        height: 680,
+        height: 760,
         padding: EdgeInsets.all(16),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,

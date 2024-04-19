@@ -46,10 +46,20 @@ class _ChatListViewState extends State<ChatListView> {
               )
           ),
           Text(
+              'Hello, Im Chatty Cathy!',
+              style: GoogleFonts.mukta(
+                textStyle: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.deepPurple.shade400
+                )
+              )
+          ),
+          Text(
               'Ask me anything',
               style: GoogleFonts.mukta(
                 textStyle: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: FontWeight.w400,
                   color: Colors.deepPurple.shade400
                 )

@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/medication/addMedication.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/medication/medicationScreen.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/utils.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/validate.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/LineChartWidget.dart';
@@ -304,7 +303,7 @@ class _BloodSugarInfoCardState extends State<BloodSugarInfoCard> {
                 textStyle: TextStyle(
                     fontSize: 15,
                     fontWeight:  FontWeight.bold,
-                    color: ColorPalette.deeptextpurple
+                    color: Color.fromARGB(255, 72, 14, 200)
                 ),
               ),
             ) : TextButton(
@@ -318,13 +317,13 @@ class _BloodSugarInfoCardState extends State<BloodSugarInfoCard> {
                 style:  GoogleFonts.mukta(
                   textStyle: TextStyle(
                       fontSize: 15,
-                      color: ColorPalette.textpurple
+                      color: Color.fromARGB(192, 72, 14, 200)
                   ),
                 ),
               ),
             ),
             Container( // The vertical divider
-              color: ColorPalette.textpurple,
+              color: Color.fromARGB(192, 72, 14, 200),
               width: 1.0,
               height: 20 ,
             ),
@@ -334,7 +333,7 @@ class _BloodSugarInfoCardState extends State<BloodSugarInfoCard> {
                 textStyle: TextStyle(
                     fontSize: 15,
                     fontWeight:  FontWeight.bold,
-                    color: ColorPalette.deeptextpurple
+                    color: Color.fromARGB(255, 72, 14, 200)
                 ),
               ),
             ) : TextButton(
@@ -348,7 +347,7 @@ class _BloodSugarInfoCardState extends State<BloodSugarInfoCard> {
                 style:  GoogleFonts.mukta(
                   textStyle: TextStyle(
                       fontSize: 15,
-                      color: ColorPalette.textpurple
+                      color: Color.fromARGB(192, 72, 14, 200)
                   ),
                 ),
               ),

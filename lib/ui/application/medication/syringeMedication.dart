@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/carbCalculator.dart';
+import 'package:healthcare_monitoring_diabetic_patients/utils/InsulinCalculator.dart';
 import 'package:healthcare_monitoring_diabetic_patients/widgets/roundButton.dart';
 import 'package:intl/intl.dart';
 
@@ -22,7 +22,7 @@ class SyringeMedicineDetails extends StatefulWidget {
 }
 
 class _SyringeMedicineDetailsState extends State<SyringeMedicineDetails> {
-  final CarbCalculator calculator = CarbCalculator();
+  final InsulinCalculator calculator = InsulinCalculator();
   final database = FirebaseDatabase(
       databaseURL:
           "https://dummy-4eeab-default-rtdb.asia-southeast1.firebasedatabase.app");
@@ -142,7 +142,7 @@ class _SyringeMedicineDetailsState extends State<SyringeMedicineDetails> {
                           Align(
                             alignment: Alignment.topLeft,
                             child: Text(
-                              'CarbCalculator',
+                              'Insulin Dosage',
                               style: GoogleFonts.tiltNeon(
                                   textStyle: TextStyle(
                                       fontSize: 35,

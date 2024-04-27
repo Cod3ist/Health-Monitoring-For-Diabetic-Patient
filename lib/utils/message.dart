@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MessageWidget extends StatelessWidget {
   final String text;
@@ -18,14 +18,20 @@ class MessageWidget extends StatelessWidget {
             width: response ? 310 : 130,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: response ? Colors.grey.shade300 : ColorPalette.purple,
+              color: response ? Colors.grey.shade300 : Color.fromARGB(255, 174, 136, 255),
               borderRadius: BorderRadius.circular(8).copyWith(
                   bottomLeft: response ? const Radius.circular(0) : null,
                   bottomRight: !response ? const Radius.circular(0) : null
               )
             ),
             child: Text(
-              text
+              text,
+              style: GoogleFonts.mukta(
+                textStyle: TextStyle(
+                  fontSize: 16,
+                  color: response ? Colors.black54 : Colors.purple.shade50
+                )
+              )
             ),
           )
         ],

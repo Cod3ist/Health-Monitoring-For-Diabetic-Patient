@@ -6,10 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/exercise/exercises.dart';
-import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/foodDetails.dart';
+import 'package:healthcare_monitoring_diabetic_patients/ui/application/nutrition/snackReference.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import '../../../utils/colors.dart';
 import '../../../widgets/boxButton.dart';
 import '../../../widgets/roundButton.dart';
 
@@ -20,7 +19,6 @@ class NutritionScreen extends StatefulWidget {
 }
 
 class _NutritionScreenState extends State<NutritionScreen> {
-  final _auth = FirebaseAuth.instance;
   bool _setBreakfast = true;
   bool _setLunch = true;
   bool _setDinner = true;
@@ -278,7 +276,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 BoxButton(
                     title: 'Snacks',
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => NutritionMainScreen()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SnackReference()));
                     }, image_path: 'assets/Images/snacks.svg',
                 ),
                 // SizedBox(height: 10,),

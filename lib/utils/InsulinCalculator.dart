@@ -1,4 +1,4 @@
-class CarbCalculator{
+class InsulinCalculator{
   double _result = 0.0;
   double get result => _result;
 
@@ -9,3 +9,4 @@ class CarbCalculator{
     _result = ((carbs / ICR) + ((current - target) / ISF));
   }
 }
+

@@ -1,18 +1,12 @@
-import 'dart:convert';
 import 'dart:math';
 import 'dart:ui';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/application/medical%20profile/medicalReports.dart';
 import 'package:healthcare_monitoring_diabetic_patients/ui/auth/welcomeScreen.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/fetch_data.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
-import 'package:hive/hive.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
@@ -55,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   textStyle:TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: ColorPalette.deeptextpurple
+                                      color:  Color.fromARGB(255, 72, 14, 200)
                                   ),)
                               ) : TextButton(
                                 onPressed: (){
@@ -68,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: GoogleFonts.aBeeZee(
                                     textStyle: TextStyle(
                                         fontSize: 20,
-                                        color: ColorPalette.textpurple
+                                        color: Color.fromARGB(192, 72, 14, 200)
                                     ),
                                   )
                                 ),
@@ -79,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   textStyle:TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
-                                    color: ColorPalette.deeptextpurple
+                                    color: Color.fromARGB(255, 72, 14, 200)
                                 ),)
                               ) : TextButton(
                                 onPressed: (){
@@ -92,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: GoogleFonts.aBeeZee(
                                       textStyle: TextStyle(
                                           fontSize: 20,
-                                          color: ColorPalette.textpurple
+                                          color: Color.fromARGB(192, 72, 14, 200)
                                       ),
                                     )
                                 ),
@@ -135,6 +129,15 @@ class IntroContainer extends StatefulWidget {
 }
 class _IntroContainerState extends State<IntroContainer> {
   final _auth = FirebaseAuth.instance;
+
+  _getTime(time){
+    var state = time.split(':').toList();
+    if( int.parse(state[0])>17 ){
+      return 'night';
+    } else {
+      return 'day';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -199,8 +202,13 @@ class _IntroContainerState extends State<IntroContainer> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Image(
+              _getTime(DateFormat('HH:mm:ss').format(DateTime.now()).toString()) == 'day'
+               ? Image(
                 image: AssetImage("assets/Images/day.png"),
+                height: 80,
+                )
+               : Image(
+                image: AssetImage("assets/Images/night.png"),
                 height: 80,
               ),
               Text(
@@ -268,7 +276,7 @@ class PatientDetails extends StatelessWidget {
                     ),
                   )
               ),
-              const SizedBox(width: 109,),
+              const SizedBox(width: 108,),
               IconButton(
                   onPressed: (){
                     // _getMedicalDetails();
@@ -410,7 +418,7 @@ class MedicalDetails extends StatelessWidget {
                   ),
                 )
               ),
-              const SizedBox(width: 104,),
+              const SizedBox(width: 103,),
               IconButton(
                   onPressed: (){
                     Navigator.push(context, MaterialPageRoute(builder: (context) => MedicalReports(user: user,)));

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/foodDataModel.dart';
 
-class NutritionMainScreen extends StatefulWidget {
-  const NutritionMainScreen({Key? key}) : super(key: key);
+class SnackReference extends StatefulWidget {
+  const SnackReference({Key? key}) : super(key: key);
 
   @override
-  State<NutritionMainScreen> createState() => _NutritionMainScreenState();
+  State<SnackReference> createState() => _SnackReferenceState();
 }
 
-class _NutritionMainScreenState extends State<NutritionMainScreen> {
+class _SnackReferenceState extends State<SnackReference> {
   late List<FoodDetailsModel> _allData;
   late List<FoodDetailsModel> _filteredData;
   final _searchController = TextEditingController();

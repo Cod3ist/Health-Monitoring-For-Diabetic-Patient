@@ -40,9 +40,9 @@ class _NavigationMenuState extends State<NavigationMenu> {
           },
           destinations: [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home',),
-            NavigationDestination(icon: Icon(Iconsax.note), label: 'BGL',),
-            NavigationDestination(icon: Icon(Icons.fastfood_outlined), label: 'Nutrition',),
-            NavigationDestination(icon: Icon(Icons.chat), label: 'Chat',)
+            NavigationDestination(icon: Icon(Iconsax.note), label: 'Tracker',),
+            NavigationDestination(icon: Icon(Icons.fastfood_outlined), label: 'H&F',),
+            NavigationDestination(icon: Icon(Icons.chat), label: 'Chat',),
           ],
         ),
       ),

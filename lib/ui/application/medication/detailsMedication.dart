@@ -154,7 +154,7 @@ class MainSection extends StatelessWidget {
                 ),
                 MainInfoTab(
                   fieldTitle: 'Dosage',
-                  fieldInfo: '${dosage}mg',
+                  fieldInfo: '${dosage}',
                 ),
               ],
             ),

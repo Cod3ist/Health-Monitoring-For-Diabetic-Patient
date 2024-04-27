@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthcare_monitoring_diabetic_patients/utils/chatbotfetch.dart';
-import 'package:healthcare_monitoring_diabetic_patients/utils/colors.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../../widgets/chat_list_view.dart';
 import '../../auth/welcomeScreen.dart';
